@@ -1,0 +1,57 @@
+[
+  {
+    "Id": 1,
+    "Name": "Company",
+    "Description": "A company sized formation",
+    "MinimumTonnage": 0,
+    "MaximumTonnage": 1500,
+    "MinimumBV": 0,
+    "MaximumBV": 30000,
+    "MinimumMHCount": 0,
+    "MaximumMHCount": 43
+  },
+  {
+    "Id": 2,
+    "Name": "Battalion",
+    "Description": "A battalion sized formation",
+    "MinimumTonnage": 1501,
+    "MaximumTonnage": 4500,
+    "MinimumBV": 30001,
+    "MaximumBV": 90000,
+    "MinimumMHCount": 44,
+    "MaximumMHCount": 131
+  },
+  {
+    "Id": 3,
+    "Name": "Regiment",
+    "Description": "A regiment sized formation",
+    "MinimumTonnage": 4501,
+    "MaximumTonnage": 13500,
+    "MinimumBV": 90001,
+    "MaximumBV": 270000,
+    "MinimumMHCount": 132,
+    "MaximumMHCount": 395
+  },
+  {
+    "Id": 4,
+    "Name": "Brigade",
+    "Description": "A brigade or regimental combat team sized formation",
+    "MinimumTonnage": 13501,
+    "MaximumTonnage": 40500,
+    "MinimumBV": 270001,
+    "MaximumBV": 810000,
+    "MinimumMHCount": 396,
+    "MaximumMHCount": 791
+  },
+  {
+    "Id": 5,
+    "Name": "Division",
+    "Description": "A division sized formation",
+    "MinimumTonnage": 40501,
+    "MaximumTonnage": 4294967295,
+    "MinimumBV": 810001,
+    "MaximumBV": 4294967295,
+    "MinimumMHCount": 792,
+    "MaximumMHCount": 4294967295
+  }
+]
