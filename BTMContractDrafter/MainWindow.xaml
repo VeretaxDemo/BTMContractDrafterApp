@@ -7,6 +7,44 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Menu>
+            <!-- File Menu -->
+            <MenuItem Header="File">
+                <!-- File Menu Items -->
+                <MenuItem Header="New" />
+                <MenuItem Header="Open" />
+                <MenuItem Header="Save" />
+                <Separator />
+                <MenuItem Header="Exit" />
+            </MenuItem>
 
+            <!-- Unit Menu -->
+            <MenuItem Header="Unit">
+                <!-- Unit Menu Items -->
+                <MenuItem Header="Add Unit" />
+                <MenuItem Header="Remove Unit" />
+            </MenuItem>
+
+            <!-- Contract Menu -->
+            <MenuItem Header="Contract">
+                <!-- Contract Menu Items -->
+                <MenuItem Header="View Contracts" />
+                <MenuItem Header="Add Contract" />
+            </MenuItem>
+
+            <!-- Planet Menu -->
+            <MenuItem Header="Planet">
+                <!-- Planet Menu Items -->
+                <MenuItem Header="View Planets" />
+                <MenuItem Header="Add Planet" />
+            </MenuItem>
+
+            <!-- Rules Menu -->
+            <MenuItem Header="Rules">
+                <!-- Rules Menu Items -->
+                <MenuItem Header="View Rules" />
+                <MenuItem Header="Edit Rules" />
+            </MenuItem>
+        </Menu>
     </Grid>
 </Window>
