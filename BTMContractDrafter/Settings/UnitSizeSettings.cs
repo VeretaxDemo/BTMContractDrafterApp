@@ -55,40 +55,54 @@ public class UnitSizeSettings
     public List<UnitSize> GetUnitSizesFromDataSource()
     {
         string settingsFilePath = "UnitSizesSettings.json";
+        var dataService = new GeneralSettingsService<UnitSize>(settingsFilePath);
 
-        if (!File.Exists(settingsFilePath))
-        {
-            // Handle the case when the settings file is missing or not found.
-            // You can display an alert or a message box to inform the user.
-            MessageBox.Show("UnitSizesSettings.json file not found. Generating using default settings.");
+        // Get the default UnitSize objects as a backup
+        List<UnitSize> defaultUnitSizes = GetDefaultUnitSizes();
 
-            // Get the default UnitSize objects as a backup
-            List<UnitSize> defaultUnitSizes = GetDefaultUnitSizes();
-
-            try
-            {
-                // Serialize the default UnitSize data to JSON
-                string jsonDefaultContent = JsonConvert.SerializeObject(defaultUnitSizes, Formatting.Indented);
-
-                // Create the settings file and write the JSON content to it
-                File.WriteAllText(settingsFilePath, jsonDefaultContent);
-            }
-            catch (Exception ex)
-            {
-                // Handle any errors that may occur during file creation
-                MessageBox.Show($"Error creating UnitSizesSettings.json: {ex.Message}");
-            }
-
-            // Return the default UnitSize objects
-            return defaultUnitSizes;
-        }
-
-        // Read JSON data from the file
-        string jsonContent = File.ReadAllText(settingsFilePath);
-
-        // Deserialize JSON to a list of UnitSize objects
-        List<UnitSize> unitSizes = JsonConvert.DeserializeObject<List<UnitSize>>(jsonContent);
+        // Retrieve data from JSON file or generate it if the file doesn't exist
+        List<UnitSize> unitSizes = dataService.GetDataFromDataSource(defaultUnitSizes);
 
         return unitSizes;
     }
+
+    //public List<UnitSize> GetUnitSizesFromDataSource()
+    //{
+    //    string settingsFilePath = "UnitSizesSettings.json";
+
+    //    if (!File.Exists(settingsFilePath))
+    //    {
+    //        // Handle the case when the settings file is missing or not found.
+    //        // You can display an alert or a message box to inform the user.
+    //        MessageBox.Show("UnitSizesSettings.json file not found. Generating using default settings.");
+
+    //        // Get the default UnitSize objects as a backup
+    //        List<UnitSize> defaultUnitSizes = GetDefaultUnitSizes();
+
+    //        try
+    //        {
+    //            // Serialize the default UnitSize data to JSON
+    //            string jsonDefaultContent = JsonConvert.SerializeObject(defaultUnitSizes, Formatting.Indented);
+
+    //            // Create the settings file and write the JSON content to it
+    //            File.WriteAllText(settingsFilePath, jsonDefaultContent);
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            // Handle any errors that may occur during file creation
+    //            MessageBox.Show($"Error creating UnitSizesSettings.json: {ex.Message}");
+    //        }
+
+    //        // Return the default UnitSize objects
+    //        return defaultUnitSizes;
+    //    }
+
+    //    // Read JSON data from the file
+    //    string jsonContent = File.ReadAllText(settingsFilePath);
+
+    //    // Deserialize JSON to a list of UnitSize objects
+    //    List<UnitSize> unitSizes = JsonConvert.DeserializeObject<List<UnitSize>>(jsonContent);
+
+    //    return unitSizes;
+    //}
 }

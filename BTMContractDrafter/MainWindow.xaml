@@ -45,6 +45,7 @@
                 <MenuItem Header="View Rules" />
                 <MenuItem Header="Edit Rules" />
                 <MenuItem Header="Unit Sizes" Click="MenuItem_UnitSizes_Click"/>
+                <MenuItem Header="Operational Terrains" Click="MenuItem_OperationalTerrains_Click"/>
             </MenuItem>
         </Menu>
     </Grid>

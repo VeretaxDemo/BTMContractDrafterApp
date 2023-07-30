@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BTMContractDrafter.Views.OperationalTerrain;
 
 namespace BTMContractDrafter
 {
@@ -24,6 +25,7 @@ namespace BTMContractDrafter
     public partial class MainWindow : Window
     {
         private UnitSizeSettings _unitSizeSettings = new UnitSizeSettings();
+        private OperationalTerrainSettings _operationalTerrainSettings = new OperationalTerrainSettings();
         public MainWindow()
         {
             InitializeComponent();
@@ -38,7 +40,7 @@ namespace BTMContractDrafter
 
         private void MenuItem_UnitSizes_Click(object sender, RoutedEventArgs e)
         {
-            // Get the list of available UnitSizes (replace this with your actual data source)
+            // Get the list of available UnitSizes
             List<UnitSize> unitSizes = _unitSizeSettings.GetUnitSizesFromDataSource();
 
             // Create and show the dialog to select the UnitSize
@@ -53,6 +55,28 @@ namespace BTMContractDrafter
                 // Create and show the display window for the selected UnitSize
                 UnitSizeDisplay displayWindow = new UnitSizeDisplay();
                 displayWindow.DataContext = selectedUnitSize;
+                displayWindow.Show();
+            }
+        }
+
+        private void MenuItem_OperationalTerrains_Click(object sender, RoutedEventArgs e)
+        {
+            // Get the list of available OperationalTerrains
+            List<OperationalTerrain> operationalTerrains =
+                _operationalTerrainSettings.GetOperationalTerrainFromDataSource();
+
+            // Create and show the dialog to select the OperatoinalTerrain
+            OperationalTerrainListView dialog = new OperationalTerrainListView();
+            dialog.lstOperationalTerrain.ItemsSource = operationalTerrains;
+
+            if (dialog.ShowDialog() == true)
+            {
+                // Get the selected OperationalTerrain from the dialog
+                OperationalTerrain selectedOperationalTerrain = dialog.lstOperationalTerrain.SelectedItem as OperationalTerrain;
+
+                // Create and show the display window for the selected OperationalTerrain
+                OperationalTerrainDisplayView displayWindow = new OperationalTerrainDisplayView();
+                displayWindow.DataContext = selectedOperationalTerrain;
                 displayWindow.Show();
             }
         }
