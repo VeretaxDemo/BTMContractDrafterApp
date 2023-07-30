@@ -13,6 +13,7 @@
                     <StackPanel>
                         <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
                         <TextBlock Text="{Binding Description}" FontStyle="Italic"/>
+                        <TextBlock Text="{Binding UnitSizeParameters}" FontStyle="Italic"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

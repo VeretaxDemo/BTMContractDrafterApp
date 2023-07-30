@@ -10,7 +10,7 @@ public class UnitSize
     public uint MinimumTonnage { get; set;}
     public uint MaximumTonnage { get; set;}
     public uint MinimumBV { get; set;}
-    public uint MaximumBM { get; set;}
+    public uint MaximumBV { get; set;}
     public uint MinimumMHCount { get; set;}
     public uint MaximumMHCount { get; set;}
     public int NegotiationSizeBonus { get; set; }
@@ -36,7 +36,7 @@ public class UnitSize
     {
         get
         {
-            string value = $"{this.MinimumMHCount} and {this.MaximumBM} battle value";
+            string value = $"{this.MinimumMHCount} and {this.MaximumBV} battle value";
             return value;
         }
     }

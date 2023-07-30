@@ -8,6 +8,6 @@
         Title="UnitSizeDisplay" Height="450" Width="800">
     <Grid>
         <Label Content="{Binding Name}" />
-        <Label Content="{Binding UnitSizeParameters}" />
+        <Label Content="{Binding Description}" />
     </Grid>
 </Window>
