@@ -19,8 +19,9 @@ public class UnitSize
     {
         get
         {
-            string value = $"{this.MinimumTonnage} tons and {this.MaximumTonnage} tons";
-            return value;
+            string minTonnage = this.MinimumTonnage.ToString("N0");
+            string maxTonnage = this.MaximumTonnage == uint.MaxValue ? "unlimited" : this.MaximumTonnage.ToString("N0");
+            return $"{minTonnage} tons and {maxTonnage} tons";
         }
     }
 
@@ -28,16 +29,18 @@ public class UnitSize
     {
         get
         {
-            string value = $"{this.MinimumBV} and {this.MaximumMHCount} military hardware items";
-            return value;
+            string minBV = this.MinimumBV.ToString("N0");
+            string maxBV = this.MaximumBV == uint.MaxValue ? "unlimited" : this.MaximumBV.ToString("N0");
+            return $"{minBV} and {maxBV} battle value";
         }
     }
     public string UnitMHCountParameters
     {
         get
         {
-            string value = $"{this.MinimumMHCount} and {this.MaximumBV} battle value";
-            return value;
+            string minMHCount = this.MinimumMHCount.ToString("N0");
+            string maxMHCount = this.MaximumMHCount == uint.MaxValue ? "unlimited" : this.MaximumMHCount.ToString("N0");
+            return $"{minMHCount} and {maxMHCount} military hardware items";
         }
     }
 
