@@ -5,15 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BTMContractDrafter.Views.OperationalTerrain"
         mc:Ignorable="d"
-        Title="OperationalTerrainDisplayView" Height="450" Width="800">
-    <ListBox>
-        <ListBox.ItemTemplate>
-            <DataTemplate>
-                <StackPanel Margin="10">
-                    <TextBlock Text="{Binding Name}" FontWeight="Bold" />
-                    <TextBlock Text="{Binding Description}" TextWrapping="Wrap" />
-                </StackPanel>
-            </DataTemplate>
-        </ListBox.ItemTemplate>
-    </ListBox>
+        Title="OperationalTerrainDisplayView" Height="600" Width="800">
+    <Grid Name="gridOperationalTerrainDisplay">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="15"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="15"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+            <!-- Add more rows for other properties if needed -->
+        </Grid.RowDefinitions>
+        <Label Grid.Row="2" Grid.Column="1" Content="Name:" />
+        <Label Grid.Row="2" Grid.Column="3" Content="{Binding Name}" />
+
+        <Label Grid.Row="3" Grid.Column="1" Content="Description:" />
+        <ScrollViewer Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2">
+        <TextBlock Text="{Binding Description}" TextWrapping="Wrap" />
+        </ScrollViewer>
+        <Button Grid.Row="5" Grid.Column="3" Content="Close" Click="CloseButton_Click" Margin="5 10 5 5 " HorizontalAlignment="Left"  />
+    </Grid>
 </Window>

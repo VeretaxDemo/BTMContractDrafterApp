@@ -19,9 +19,18 @@ namespace BTMContractDrafter.Views.OperationalTerrain
     /// </summary>
     public partial class OperationalTerrainDisplayView : Window
     {
-        public OperationalTerrainDisplayView()
+        public double YourPercentageProperty { get; set; } = 0.6; // 60% of the available width
+
+        private Models.OperationalTerrain _operationalTerrain;
+        public OperationalTerrainDisplayView(Models.OperationalTerrain selectedOperationalTerrain)
         {
             InitializeComponent();
+            _operationalTerrain = selectedOperationalTerrain;
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

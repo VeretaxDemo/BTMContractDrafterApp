@@ -11,17 +11,24 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using BTMContractDrafter.Models;
 namespace BTMContractDrafter.Views.UnitSize
 {
     /// <summary>
     /// Interaction logic for UnitSizeDisplayView.xaml
     /// </summary>
-    public partial class UnitSizeDisplay : Window
+    public partial class UnitSizeDisplayView : Window
     {
-        public UnitSizeDisplay()
+        private Models.UnitSize _unitSize;
+        public UnitSizeDisplayView(Models.UnitSize unitSize)
         {
             InitializeComponent();
+            _unitSize = unitSize;
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

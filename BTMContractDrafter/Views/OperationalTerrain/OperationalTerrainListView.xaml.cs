@@ -26,7 +26,26 @@ namespace BTMContractDrafter.Views.OperationalTerrain
 
         private void btnSelect_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            // Get the selected OperationalTerrain from the ListBox
+            Models.OperationalTerrain selectedOperationalTerrain = lstOperationalTerrain.SelectedItem as Models.OperationalTerrain;
+
+            // If an item is selected, close the dialog and return the selected OperationalTerrain
+            if (selectedOperationalTerrain != null)
+            {
+                DialogResult = true;
+
+                // Create and show the display window for the selected OperationalTerrain
+                OperationalTerrainDisplayView displayViewWindow = new OperationalTerrainDisplayView(selectedOperationalTerrain);
+                displayViewWindow.DataContext = selectedOperationalTerrain;
+                displayViewWindow.Show();
+
+                Close(); // Close the OperationalTerrainListView dialog
+            }
+            else
+            {
+                // If nothing is selected, show an error message
+                MessageBox.Show("Please select an Operational Terrain.", "Selection Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

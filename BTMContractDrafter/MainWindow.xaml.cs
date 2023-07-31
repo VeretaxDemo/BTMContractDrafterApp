@@ -49,13 +49,8 @@ namespace BTMContractDrafter
 
             if (dialog.ShowDialog() == true)
             {
-                // Get the selected UnitSize from the dialog
-                UnitSize selectedUnitSize = dialog.lstUnitSizes.SelectedItem as UnitSize;
-
-                // Create and show the display window for the selected UnitSize
-                UnitSizeDisplay displayWindow = new UnitSizeDisplay();
-                displayWindow.DataContext = selectedUnitSize;
-                displayWindow.Show();
+                // Do Nothing Let dialog handle its spin up
+                this.Activate();
             }
         }
 
@@ -71,13 +66,8 @@ namespace BTMContractDrafter
 
             if (dialog.ShowDialog() == true)
             {
-                // Get the selected OperationalTerrain from the dialog
-                OperationalTerrain selectedOperationalTerrain = dialog.lstOperationalTerrain.SelectedItem as OperationalTerrain;
-
-                // Create and show the display window for the selected OperationalTerrain
-                OperationalTerrainDisplayView displayWindow = new OperationalTerrainDisplayView();
-                displayWindow.DataContext = selectedOperationalTerrain;
-                displayWindow.Show();
+                // Do Nothing Let dialog handle its spin up
+                this.Activate();
             }
         }
     }

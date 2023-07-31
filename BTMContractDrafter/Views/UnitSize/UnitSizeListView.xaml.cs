@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BTMContractDrafter.Models;
 
 namespace BTMContractDrafter.Views.UnitSize
 {
@@ -26,7 +27,27 @@ namespace BTMContractDrafter.Views.UnitSize
 
         private void btnSelect_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            // Get the selected UnitSize from the ListBox
+            Models.UnitSize selectedUnitSize = lstUnitSizes.SelectedItem as Models.UnitSize;
+
+            // If an item is selected, close the dialog and return the selected UnitSize
+            if (selectedUnitSize != null)
+            {
+                DialogResult = true;
+
+                UnitSizeDisplayView displayViewWindow = new UnitSizeDisplayView(selectedUnitSize);
+                displayViewWindow.DataContext = selectedUnitSize;
+                displayViewWindow.Show();
+
+                Close(); // Close the UnitSizeListView dialog
+            }
+            else
+            {
+                // If nothing is selected, show an error message
+                MessageBox.Show("Please select a Unit Size.", "Selection Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            this.Activate();
         }
     }
 }
