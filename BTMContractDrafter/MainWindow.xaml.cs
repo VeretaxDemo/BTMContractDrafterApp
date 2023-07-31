@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BTMContractDrafter.Views.OperationalTerrain;
 using BTMContractDrafter.Views.TerrainTypes;
+using BTMContractDrafter.Views.Unit;
 
 namespace BTMContractDrafter
 {
@@ -102,6 +103,13 @@ namespace BTMContractDrafter
                 // Do Nothing Let dialog handle its spin up
                 this.Activate();
             }
+        }
+
+        private void MenuItem_AddUnit_Click(object sender, RoutedEventArgs e)
+        {
+            // Open the AddUnitView window when "Add Unit" menu item is clicked
+            UnitAddView addUnitView = new UnitAddView();
+            addUnitView.ShowDialog();
         }
     }
 }

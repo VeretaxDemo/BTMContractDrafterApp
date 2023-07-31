@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace BTMContractDrafter.Views.TerrainTypes
 {
     /// <summary>
-    /// Interaction logic for TerrainTypeListView.xaml
+    /// Interaction logic for ListTerrainTypeView.xaml
     /// </summary>
     public partial class TerrainTypeListView : Window
     {

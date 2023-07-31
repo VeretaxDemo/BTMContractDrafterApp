@@ -16,7 +16,7 @@ using BTMContractDrafter.Models;
 namespace BTMContractDrafter.Views.UnitSize
 {
     /// <summary>
-    /// Interaction logic for UnitSizeListView.xaml
+    /// Interaction logic for ListUnitSizeView.xaml
     /// </summary>
     public partial class UnitSizeListView : Window
     {

@@ -21,7 +21,7 @@
             <!-- Unit Menu -->
             <MenuItem Header="Unit">
                 <!-- Unit Menu Items -->
-                <MenuItem Header="Add Unit" />
+                <MenuItem Header="Add Unit" Click="MenuItem_AddUnit_Click"/>
                 <MenuItem Header="Remove Unit" />
             </MenuItem>
 
