@@ -11,10 +11,10 @@ namespace BTMContractDrafter.ViewModels;
 
 public class AddUnitViewModel : ViewModelBase
 {
-    private ObservableCollection<string> _unitSizes;
+    private ObservableCollection<UnitSize> _unitSizes;
     private Unit _selectedUnit;
 
-    public ObservableCollection<string> UnitSizes
+    public ObservableCollection<UnitSize> UnitSizes
     {
         get { return _unitSizes; }
         set
@@ -34,7 +34,7 @@ public class AddUnitViewModel : ViewModelBase
         }
     }
 
-    public AddUnitViewModel(ObservableCollection<string> unitSizes)
+    public AddUnitViewModel(ObservableCollection<UnitSize> unitSizes)
     {
         // Convert the list of UnitSize objects to a list of strings
         UnitSizes = unitSizes;

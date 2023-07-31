@@ -22,9 +22,9 @@ namespace BTMContractDrafter.Views.Unit
     /// </summary>
     public partial class AddUnitView : Window
     {
-        public ObservableCollection<string> UnitSizes { get; set; }
+        public ObservableCollection<Models.UnitSize> UnitSizes { get; set; }
 
-        public AddUnitView(ObservableCollection<string> unitSizes)
+        public AddUnitView(ObservableCollection<Models.UnitSize> unitSizes)
         {
             // Get the UnitSizeSettingsDataSource from the App instance
             //var app = (App)Application.Current;

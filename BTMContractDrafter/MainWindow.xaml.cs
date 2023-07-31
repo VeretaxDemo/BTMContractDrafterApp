@@ -31,8 +31,6 @@ namespace BTMContractDrafter
         public ITerrainTypesSettingsDataSource TerrainTypesSettingsDataSource { get; private set; }
         public IUnitSizeSettingsDataSource UnitSizeSettingsDataSource { get; private set; }
 
-        //        private UnitSizeSettingsDataSource _unitSizeSettingsDataSource = new UnitSizeSettingsDataSource();
-        //private OperationalTerrainSettingsDataSource _operationalTerrainSettingsDataSource = new OperationalTerrainSettingsDataSource();
         public MainWindow()
         {
             InitializeComponent();
@@ -91,7 +89,6 @@ namespace BTMContractDrafter
         private void MenuItem_TerrainTypes_Click(object sender, RoutedEventArgs e)
         {
             // Get the list of available TerrainTypes
-            //List<OperationalTerrain> operationalTerrains = ((App)Application.Current).OperationalTerrainSettingsDataSource.GetOperationalTerrain();
             List<TerrainType> terrainTypes =
                 ((App)Application.Current).TerrainTypesSettingsDataSource.GetTerrainTypes();
 
@@ -112,10 +109,11 @@ namespace BTMContractDrafter
             var unitSizeList = ((App)Application.Current).UnitSizeSettingsDataSource.GetUnitSizes();
 
             // Convert the list of UnitSize objects to a list of their names (strings)
-            var unitSizeNames = new ObservableCollection<string>(unitSizeList.Select(unitSize => unitSize.Name));
+            var unitSizeObservableCollection = new ObservableCollection<UnitSize>(unitSizeList);
+
 
             // Open the AddUnitView window and pass the unitSizeNames collection to it
-            var addUnitView = new AddUnitView(unitSizeNames);
+            var addUnitView = new AddUnitView(unitSizeObservableCollection);
             addUnitView.ShowDialog();
         }
     }

@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800"
              >
-    <Grid>
+    <!--<Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="15" />
             <RowDefinition Height="Auto" />
@@ -27,7 +27,15 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Unit Size:" Grid.Row="1" Grid.Column="1" />
-        <ComboBox x:Name="cmbUnitSize" Grid.Row="1" Grid.Column="3" ItemsSource="{Binding UnitSizes}" DisplayMemberPath="Name" SelectedItem="{Binding Unit.UnitSize}" />
+        --><!--<ComboBox x:Name="cmbUnitSize" Grid.Row="1" Grid.Column="3" ItemsSource="{Binding UnitSizes}" DisplayMemberPath="Name"  SelectedItem="{Binding SelectedUnit.UnitSize}" />-->
+        <!--<ComboBox x:Name="cmbUnitSize" Grid.Row="1" Grid.Column="3"
+                  ItemsSource="{Binding UnitSizes}"
+                  DisplayMemberPath="Name"
+                  SelectedValuePath="id"
+                  SelectedValue="{Binding SelectedUnit.UnitSize}" />
+        <ComboBox Grid.Row="1" Grid.Column="3" x:Name="cmbUnitSize" ItemsSource="{Binding UnitSizes}" DisplayMemberPath="Name" SelectedValuePath="id" SelectedValue="{Binding SelectedUnit.UnitSize}" />--><!--
+
+        <ComboBox Grid.Row="1" Grid.Column="3" x:Name="cmbUnitSize" ItemsSource="{Binding UnitSizes}" DisplayMemberPath="Name" SelectedValuePath="id" SelectedValue="{Binding SelectedUnitSize}" />
 
         <TextBlock Text="Unit Name:" Grid.Row="2" Grid.Column="1" />
         <TextBox Grid.Row="2" Grid.Column="3" Text="{Binding Unit.UnitName}" />
@@ -40,5 +48,5 @@
 
         <TextBlock Text="Opposition Faction Reputation:" Grid.Row="5" Grid.Column="1" />
         <TextBox Grid.Row="5" Grid.Column="3" Text="{Binding Unit.OppositionFactionReputation}" />
-    </Grid>
+    </Grid>-->
 </UserControl>
