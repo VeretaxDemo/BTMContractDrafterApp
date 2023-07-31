@@ -24,11 +24,25 @@ namespace BTMContractDrafter
     /// </summary>
     public partial class MainWindow : Window
     {
-//        private UnitSizeSettingsDataSource _unitSizeSettingsDataSource = new UnitSizeSettingsDataSource();
+        public IOperationalTerrainSettingsDataSource OperationalTerrainSettingsDataSource { get; private set; }
+        public ITerrainTypesSettingsDataSource TerrainTypesSettingsDataSource { get; private set; }
+        public IUnitSizeSettingsDataSource UnitSizeSettingsDataSource { get; private set; }
+
+        //        private UnitSizeSettingsDataSource _unitSizeSettingsDataSource = new UnitSizeSettingsDataSource();
         //private OperationalTerrainSettingsDataSource _operationalTerrainSettingsDataSource = new OperationalTerrainSettingsDataSource();
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        public MainWindow(IOperationalTerrainSettingsDataSource operationalTerrainSettingsDataSource,
+            ITerrainTypesSettingsDataSource terrainTypesSettingsDataSource, IUnitSizeSettingsDataSource unitSizeSettingsDataSource)
+        {
+            InitializeComponent();
+
+            OperationalTerrainSettingsDataSource = operationalTerrainSettingsDataSource;
+            TerrainTypesSettingsDataSource = terrainTypesSettingsDataSource;
+            UnitSizeSettingsDataSource = unitSizeSettingsDataSource;
         }
 
 

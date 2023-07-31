@@ -21,6 +21,7 @@ namespace BTMContractDrafter
         // Create a property to hold the data source instance
         public IUnitSizeSettingsDataSource UnitSizeSettingsDataSource { get; private set; }
         public IOperationalTerrainSettingsDataSource OperationalTerrainSettingsDataSource { get; set; }
+        public ITerrainTypesSettingsDataSource TerrainTypesSettingsDataSource { get; set; }
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -31,11 +32,21 @@ namespace BTMContractDrafter
                     new UnitSizeSettingsDataSource(_unitSizeSettingsFilePath))
                 .AddSingleton<IOperationalTerrainSettingsDataSource>(provider =>
                     new OperationalTerrainSettingsDataSource(_operationalTerrainSettingsFilePath))
+                .AddSingleton<ITerrainTypesSettingsDataSource>(provider =>
+                    new TerrainTypesSettingsDataSource(_terrainTypesSettingsFilePath,
+                        ((App)Application.Current).OperationalTerrainSettingsDataSource.GetOperationalTerrain()))
                 .BuildServiceProvider();
 
-            UnitSizeSettingsDataSource = CreateDataSource<UnitSizeSettingsDataSource>(_unitSizeSettingsFilePath);
+            //UnitSizeSettingsDataSource = CreateDataSource<UnitSizeSettingsDataSource>(_unitSizeSettingsFilePath);
 
-            OperationalTerrainSettingsDataSource = CreateDataSource<OperationalTerrainSettingsDataSource>(_operationalTerrainSettingsFilePath);
+            //OperationalTerrainSettingsDataSource = CreateDataSource<OperationalTerrainSettingsDataSource>(_operationalTerrainSettingsFilePath);
+            //TerrainTypesSettingsDataSource =
+            //    CreateDataSource<TerrainTypesSettingsDataSource>(_terrainTypesSettingsFilePath);
+
+            // Get the data sources from the DI container
+            UnitSizeSettingsDataSource = serviceProvider.GetRequiredService<IUnitSizeSettingsDataSource>();
+            OperationalTerrainSettingsDataSource = serviceProvider.GetRequiredService<IOperationalTerrainSettingsDataSource>();
+            TerrainTypesSettingsDataSource = serviceProvider.GetRequiredService<ITerrainTypesSettingsDataSource>();
         }
 
         // Generic method to create data sources based on the type T

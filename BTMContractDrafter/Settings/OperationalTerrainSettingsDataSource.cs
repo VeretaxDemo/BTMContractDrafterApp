@@ -5,7 +5,7 @@ namespace BTMContractDrafter.Settings;
 
 public class OperationalTerrainSettingsDataSource : IOperationalTerrainSettingsDataSource
 {
-    private string _settingsFilePath;
+    private string _settingsFilePath; //"OperationalTerrainsSettings.json";
 
     public OperationalTerrainSettingsDataSource(string settingsFilePath)
     {
@@ -44,8 +44,7 @@ public class OperationalTerrainSettingsDataSource : IOperationalTerrainSettingsD
 
     public List<OperationalTerrain> GetOperationalTerrain()
     {
-        string settingsFilePath = "OperationalTerrainsSettings.json";
-        var dataService = new GeneralSettingsService<OperationalTerrain>(settingsFilePath);
+        var dataService = new GeneralSettingsService<OperationalTerrain>(_settingsFilePath);
 
         // Get the default UnitSize objects as a backup
         List<OperationalTerrain> defaultOperationalTerrain = GetDefaultOperationalTerrain();
