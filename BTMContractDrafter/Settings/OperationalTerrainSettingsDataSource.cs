@@ -3,8 +3,14 @@ using System.Collections.Generic;
 
 namespace BTMContractDrafter.Settings;
 
-public class OperationalTerrainSettings
+public class OperationalTerrainSettingsDataSource : IOperationalTerrainSettingsDataSource
 {
+    private string _settingsFilePath;
+
+    public OperationalTerrainSettingsDataSource(string settingsFilePath)
+    {
+        _settingsFilePath = settingsFilePath;
+    }
     private List<OperationalTerrain> GetDefaultOperationalTerrain()
     {
         return new List<OperationalTerrain>
@@ -36,7 +42,7 @@ public class OperationalTerrainSettings
         };
     }
 
-    public List<OperationalTerrain> GetOperationalTerrainFromDataSource()
+    public List<OperationalTerrain> GetOperationalTerrain()
     {
         string settingsFilePath = "OperationalTerrainsSettings.json";
         var dataService = new GeneralSettingsService<OperationalTerrain>(settingsFilePath);

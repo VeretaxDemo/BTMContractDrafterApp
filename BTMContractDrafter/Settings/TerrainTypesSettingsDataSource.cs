@@ -4,17 +4,17 @@ using BTMContractDrafter.Extensions;
 
 namespace BTMContractDrafter.Settings;
 
-public class TerrainTypesSettings
+public class TerrainTypesSettingsDataSource : ITerrainTypesSettingsDataSource
 {
     private List<OperationalTerrain> _operationalTerrain = new List<OperationalTerrain>();
 
-    public TerrainTypesSettings(List<OperationalTerrain> operationalTerrain)
+    public TerrainTypesSettingsDataSource(List<OperationalTerrain> operationalTerrain)
     {
         _operationalTerrain = operationalTerrain;
     }
-    public List<TerrainType> GetTerrainTypesFromDataSource()
+    public List<TerrainType> GetTerrainTypes()
     {
-        string settingsFilePath = "TerrainTypesSettings.json";
+        string settingsFilePath = "TerrainTypesSettingsDataSource.json";
         var dataService = new GeneralSettingsService<TerrainType>(settingsFilePath);
 
         // Get the default TerrainType objects as a backup

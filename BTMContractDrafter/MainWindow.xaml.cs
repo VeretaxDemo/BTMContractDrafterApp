@@ -24,8 +24,8 @@ namespace BTMContractDrafter
     /// </summary>
     public partial class MainWindow : Window
     {
-        private UnitSizeSettings _unitSizeSettings = new UnitSizeSettings();
-        private OperationalTerrainSettings _operationalTerrainSettings = new OperationalTerrainSettings();
+//        private UnitSizeSettingsDataSource _unitSizeSettingsDataSource = new UnitSizeSettingsDataSource();
+        //private OperationalTerrainSettingsDataSource _operationalTerrainSettingsDataSource = new OperationalTerrainSettingsDataSource();
         public MainWindow()
         {
             InitializeComponent();
@@ -41,7 +41,7 @@ namespace BTMContractDrafter
         private void MenuItem_UnitSizes_Click(object sender, RoutedEventArgs e)
         {
             // Get the list of available UnitSizes
-            List<UnitSize> unitSizes = _unitSizeSettings.GetUnitSizesFromDataSource();
+            List<UnitSize> unitSizes = ((App)Application.Current).UnitSizeSettingsDataSource.GetUnitSizes();
 
             // Create and show the dialog to select the UnitSize
             UnitSizeListView dialog = new UnitSizeListView();
@@ -58,7 +58,7 @@ namespace BTMContractDrafter
         {
             // Get the list of available OperationalTerrains
             List<OperationalTerrain> operationalTerrains =
-                _operationalTerrainSettings.GetOperationalTerrainFromDataSource();
+                ((App)Application.Current).OperationalTerrainSettingsDataSource.GetOperationalTerrain();
 
             // Create and show the dialog to select the OperatoinalTerrain
             OperationalTerrainListView dialog = new OperationalTerrainListView();

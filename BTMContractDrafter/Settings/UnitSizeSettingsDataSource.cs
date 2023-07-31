@@ -7,8 +7,14 @@ using Newtonsoft.Json;
 
 namespace BTMContractDrafter.Settings;
 
-public class UnitSizeSettings
+public class UnitSizeSettingsDataSource : IUnitSizeSettingsDataSource
 {
+    private string _settingsFilePath; // "UnitSizesSettings.json";
+
+    public UnitSizeSettingsDataSource(string settingsFilePath)
+    {
+        _settingsFilePath = settingsFilePath;
+    }
     private List<UnitSize> GetDefaultUnitSizes()
     {
         // Add your default UnitSize objects here
@@ -52,9 +58,9 @@ public class UnitSizeSettings
         };
     }
 
-    public List<UnitSize> GetUnitSizesFromDataSource()
+    public List<UnitSize> GetUnitSizes()
     {
-        string settingsFilePath = "UnitSizesSettings.json";
+        string settingsFilePath = _settingsFilePath;
         var dataService = new GeneralSettingsService<UnitSize>(settingsFilePath);
 
         // Get the default UnitSize objects as a backup
@@ -65,44 +71,4 @@ public class UnitSizeSettings
 
         return unitSizes;
     }
-
-    //public List<UnitSize> GetUnitSizesFromDataSource()
-    //{
-    //    string settingsFilePath = "UnitSizesSettings.json";
-
-    //    if (!File.Exists(settingsFilePath))
-    //    {
-    //        // Handle the case when the settings file is missing or not found.
-    //        // You can display an alert or a message box to inform the user.
-    //        MessageBox.Show("UnitSizesSettings.json file not found. Generating using default settings.");
-
-    //        // Get the default UnitSize objects as a backup
-    //        List<UnitSize> defaultUnitSizes = GetDefaultUnitSizes();
-
-    //        try
-    //        {
-    //            // Serialize the default UnitSize data to JSON
-    //            string jsonDefaultContent = JsonConvert.SerializeObject(defaultUnitSizes, Formatting.Indented);
-
-    //            // Create the settings file and write the JSON content to it
-    //            File.WriteAllText(settingsFilePath, jsonDefaultContent);
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            // Handle any errors that may occur during file creation
-    //            MessageBox.Show($"Error creating UnitSizesSettings.json: {ex.Message}");
-    //        }
-
-    //        // Return the default UnitSize objects
-    //        return defaultUnitSizes;
-    //    }
-
-    //    // Read JSON data from the file
-    //    string jsonContent = File.ReadAllText(settingsFilePath);
-
-    //    // Deserialize JSON to a list of UnitSize objects
-    //    List<UnitSize> unitSizes = JsonConvert.DeserializeObject<List<UnitSize>>(jsonContent);
-
-    //    return unitSizes;
-    //}
 }

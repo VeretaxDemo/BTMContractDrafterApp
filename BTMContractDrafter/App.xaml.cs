@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BTMContractDrafter.Settings;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +15,53 @@ namespace BTMContractDrafter
     /// </summary>
     public partial class App : Application
     {
+        private string _unitSizeSettingsFilePath = "UnitSizesSettings.json";
+        private string _operationalTerrainSettingsFilePath = "OperationalTerrainsSettings.json";
+        private string _terrainTypesSettingsFilePath = "TerrainTypesSettingsDataSource.json";
+        // Create a property to hold the data source instance
+        public IUnitSizeSettingsDataSource UnitSizeSettingsDataSource { get; private set; }
+        public IOperationalTerrainSettingsDataSource OperationalTerrainSettingsDataSource { get; set; }
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            // Create a new DI container and configure it
+            var serviceProvider = new ServiceCollection()
+                .AddSingleton<IUnitSizeSettingsDataSource>(provider =>
+                    new UnitSizeSettingsDataSource(_unitSizeSettingsFilePath))
+                .AddSingleton<IOperationalTerrainSettingsDataSource>(provider =>
+                    new OperationalTerrainSettingsDataSource(_operationalTerrainSettingsFilePath))
+                .BuildServiceProvider();
+
+            UnitSizeSettingsDataSource = CreateDataSource<UnitSizeSettingsDataSource>(_unitSizeSettingsFilePath);
+
+            OperationalTerrainSettingsDataSource = CreateDataSource<OperationalTerrainSettingsDataSource>(_operationalTerrainSettingsFilePath);
+        }
+
+        // Generic method to create data sources based on the type T
+        private T CreateDataSource<T>(string settingsFilePath) where T : class
+        {
+            Type targetType = typeof(T);
+
+            try
+            {
+                // Use reflection to create an instance of the target type
+                object instance = Activator.CreateInstance(targetType, settingsFilePath);
+
+                // Cast the instance to the desired interface type
+                return instance as T;
+            }
+            catch (Exception ex)
+            {
+                // Handle any errors that may occur during instance creation
+                // You can log the error or show a message box, etc.
+                return null;
+            }
+        }
+
+        public virtual void Exit_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
