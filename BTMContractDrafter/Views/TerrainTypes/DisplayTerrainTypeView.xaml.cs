@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BTMContractDrafter.Views.OperationalTerrain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,19 +12,19 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BTMContractDrafter.Models;
-namespace BTMContractDrafter.Views.UnitSize
+
+namespace BTMContractDrafter.Views.TerrainTypes
 {
     /// <summary>
-    /// Interaction logic for UnitSizeDisplayView.xaml
+    /// Interaction logic for DisplayTerrainTypeView.xaml
     /// </summary>
-    public partial class UnitSizeDisplayView : Window
+    public partial class DisplayTerrainTypeView : Window
     {
-        private Models.UnitSize _unitSize;
-        public UnitSizeDisplayView(Models.UnitSize unitSize)
+        public Models.TerrainType _terrainType { get; set; }
+        public DisplayTerrainTypeView(Models.TerrainType selectedTerrainType)
         {
             InitializeComponent();
-            _unitSize = unitSize;
+            _terrainType = selectedTerrainType;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

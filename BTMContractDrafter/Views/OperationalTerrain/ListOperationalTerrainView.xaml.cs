@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace BTMContractDrafter.Views.OperationalTerrain
 {
     /// <summary>
-    /// Interaction logic for OperationalTerrainListView.xaml
+    /// Interaction logic for ListOperationalTerrainView.xaml
     /// </summary>
-    public partial class OperationalTerrainListView : Window
+    public partial class ListOperationalTerrainView : Window
     {
-        public OperationalTerrainListView()
+        public ListOperationalTerrainView()
         {
             InitializeComponent();
         }
@@ -35,11 +35,11 @@ namespace BTMContractDrafter.Views.OperationalTerrain
                 DialogResult = true;
 
                 // Create and show the display window for the selected OperationalTerrain
-                OperationalTerrainDisplayView displayViewWindow = new OperationalTerrainDisplayView(selectedOperationalTerrain);
-                displayViewWindow.DataContext = selectedOperationalTerrain;
-                displayViewWindow.Show();
+                DisplauOperationalTerrainView viewWindow = new DisplauOperationalTerrainView(selectedOperationalTerrain);
+                viewWindow.DataContext = selectedOperationalTerrain;
+                viewWindow.Show();
 
-                Close(); // Close the OperationalTerrainListView dialog
+                Close(); // Close the ListOperationalTerrainView dialog
             }
             else
             {

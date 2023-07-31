@@ -11,20 +11,19 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
-namespace BTMContractDrafter.Views.OperationalTerrain
+using BTMContractDrafter.Models;
+namespace BTMContractDrafter.Views.UnitSize
 {
     /// <summary>
-    /// Interaction logic for OperationalTerrainDisplayView.xaml
+    /// Interaction logic for DisplayUnitSizeView.xaml
     /// </summary>
-    public partial class OperationalTerrainDisplayView : Window
+    public partial class DisplayUnitSizeView : Window
     {
-
-        private Models.OperationalTerrain _operationalTerrain;
-        public OperationalTerrainDisplayView(Models.OperationalTerrain selectedOperationalTerrain)
+        private Models.UnitSize _unitSize;
+        public DisplayUnitSizeView(Models.UnitSize unitSize)
         {
             InitializeComponent();
-            _operationalTerrain = selectedOperationalTerrain;
+            _unitSize = unitSize;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="BTMContractDrafter.Views.Unit.EditUnitControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:BTMContractDrafter.Views.Unit"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel Margin="10">
+        <TextBlock Text="Unit Size:" />
+        <ComboBox x:Name="cmbUnitSize" ItemsSource="{Binding UnitSizes}" DisplayMemberPath="Name" SelectedItem="{Binding Unit.UnitSize}" />
+        <TextBlock Text="Unit Name:" />
+        <TextBox Text="{Binding Unit.UnitName}" />
+        <TextBlock Text="Dragoon Rating:" />
+        <TextBox Text="{Binding Unit.DragoonRating}" />
+        <TextBlock Text="Employer Faction Reputation:" />
+        <TextBox Text="{Binding Unit.EmployerFactionReputation}" />
+        <TextBlock Text="Opposition Faction Reputation:" />
+        <TextBox Text="{Binding Unit.OppositionFactionReputation}" />
+    </StackPanel>
+</UserControl>

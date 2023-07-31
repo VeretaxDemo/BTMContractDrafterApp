@@ -16,11 +16,11 @@ using BTMContractDrafter.Models;
 namespace BTMContractDrafter.Views.UnitSize
 {
     /// <summary>
-    /// Interaction logic for UnitSizeListView.xaml
+    /// Interaction logic for ListUnitSizeView.xaml
     /// </summary>
-    public partial class UnitSizeListView : Window
+    public partial class ListUnitSizeView : Window
     {
-        public UnitSizeListView()
+        public ListUnitSizeView()
         {
             InitializeComponent();
         }
@@ -35,11 +35,11 @@ namespace BTMContractDrafter.Views.UnitSize
             {
                 DialogResult = true;
 
-                UnitSizeDisplayView displayViewWindow = new UnitSizeDisplayView(selectedUnitSize);
-                displayViewWindow.DataContext = selectedUnitSize;
-                displayViewWindow.Show();
+                DisplayUnitSizeView viewWindow = new DisplayUnitSizeView(selectedUnitSize);
+                viewWindow.DataContext = selectedUnitSize;
+                viewWindow.Show();
 
-                Close(); // Close the UnitSizeListView dialog
+                Close(); // Close the ListUnitSizeView dialog
             }
             else
             {

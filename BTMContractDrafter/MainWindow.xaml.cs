@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BTMContractDrafter.Views.OperationalTerrain;
 using BTMContractDrafter.Views.TerrainTypes;
+using BTMContractDrafter.Views.Unit;
 
 namespace BTMContractDrafter
 {
@@ -59,7 +60,7 @@ namespace BTMContractDrafter
             List<UnitSize> unitSizes = ((App)Application.Current).UnitSizeSettingsDataSource.GetUnitSizes();
 
             // Create and show the dialog to select the UnitSize
-            UnitSizeListView dialog = new UnitSizeListView();
+            ListUnitSizeView dialog = new ListUnitSizeView();
             dialog.lstUnitSizes.ItemsSource = unitSizes;
 
             if (dialog.ShowDialog() == true)
@@ -76,7 +77,7 @@ namespace BTMContractDrafter
                 ((App)Application.Current).OperationalTerrainSettingsDataSource.GetOperationalTerrain();
 
             // Create and show the dialog to select the OperationalTerrain
-            OperationalTerrainListView dialog = new OperationalTerrainListView();
+            ListOperationalTerrainView dialog = new ListOperationalTerrainView();
             dialog.lstOperationalTerrain.ItemsSource = operationalTerrains;
 
             if (dialog.ShowDialog() == true)
@@ -94,7 +95,7 @@ namespace BTMContractDrafter
                 ((App)Application.Current).TerrainTypesSettingsDataSource.GetTerrainTypes();
 
             // Create and show the dialog to select the TerrainType
-            TerrainTypeListView dialog = new TerrainTypeListView();
+            ListTerrainTypeView dialog = new ListTerrainTypeView();
             dialog.lstTerrainTypes.ItemsSource = terrainTypes;
 
             if (dialog.ShowDialog() == true)
@@ -102,6 +103,13 @@ namespace BTMContractDrafter
                 // Do Nothing Let dialog handle its spin up
                 this.Activate();
             }
+        }
+
+        private void MenuItem_AddUnit_Click(object sender, RoutedEventArgs e)
+        {
+            // Open the AddUnitView window when "Add Unit" menu item is clicked
+            AddUnitView addUnitView = new AddUnitView();
+            addUnitView.ShowDialog();
         }
     }
 }

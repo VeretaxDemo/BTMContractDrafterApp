@@ -1,11 +1,11 @@
-﻿<Window x:Class="BTMContractDrafter.Views.TerrainTypes.TerrainTypeListView"
+﻿<Window x:Class="BTMContractDrafter.Views.OperationalTerrain.ListOperationalTerrainView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BTMContractDrafter.Views.TerrainTypes"
+        xmlns:local="clr-namespace:BTMContractDrafter.Views.OperationalTerrain"
         mc:Ignorable="d"
-        Title="TerrainTypeListView" Height="450" Width="800">
+        Title="ListOperationalTerrainView" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -16,7 +16,7 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="5"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="lstTerrainTypes" Grid.Row="0" Grid.Column="1" SelectionMode="Single" Margin="10"
+        <ListBox x:Name="lstOperationalTerrain" Grid.Row="0" Grid.Column="1" SelectionMode="Single" Margin="10"
                  HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>

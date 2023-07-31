@@ -1,5 +1,4 @@
-﻿using BTMContractDrafter.Views.OperationalTerrain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,18 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace BTMContractDrafter.Views.TerrainTypes
+namespace BTMContractDrafter.Views.OperationalTerrain
 {
     /// <summary>
-    /// Interaction logic for TerrainTypeDisplayView.xaml
+    /// Interaction logic for DisplauOperationalTerrainView.xaml
     /// </summary>
-    public partial class TerrainTypeDisplayView : Window
+    public partial class DisplauOperationalTerrainView : Window
     {
-        public Models.TerrainType _terrainType { get; set; }
-        public TerrainTypeDisplayView(Models.TerrainType selectedTerrainType)
+
+        private Models.OperationalTerrain _operationalTerrain;
+        public DisplauOperationalTerrainView(Models.OperationalTerrain selectedOperationalTerrain)
         {
             InitializeComponent();
-            _terrainType = selectedTerrainType;
+            _operationalTerrain = selectedOperationalTerrain;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

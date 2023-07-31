@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace BTMContractDrafter.Views.TerrainTypes
 {
     /// <summary>
-    /// Interaction logic for TerrainTypeListView.xaml
+    /// Interaction logic for ListTerrainTypeView.xaml
     /// </summary>
-    public partial class TerrainTypeListView : Window
+    public partial class ListTerrainTypeView : Window
     {
-        public TerrainTypeListView()
+        public ListTerrainTypeView()
         {
             InitializeComponent();
         }
@@ -36,9 +36,9 @@ namespace BTMContractDrafter.Views.TerrainTypes
                 DialogResult = true;
 
                 // Create and show the display window for the selected OperationalTerrain
-                TerrainTypeDisplayView displayViewWindow = new TerrainTypeDisplayView(selectedTerrainType);
-                displayViewWindow.DataContext = selectedTerrainType;
-                displayViewWindow.Show();
+                DisplayTerrainTypeView viewWindow = new DisplayTerrainTypeView(selectedTerrainType);
+                viewWindow.DataContext = selectedTerrainType;
+                viewWindow.Show();
 
                 Close();
             }
