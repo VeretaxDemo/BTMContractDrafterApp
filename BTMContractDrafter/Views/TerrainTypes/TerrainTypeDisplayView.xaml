@@ -1,0 +1,41 @@
+﻿<Window x:Class="BTMContractDrafter.Views.TerrainTypes.TerrainTypeDisplayView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BTMContractDrafter.Views.TerrainTypes"
+        mc:Ignorable="d"
+        Title="TerrainTypeDisplayView" Height="450" Width="800">
+    <Grid Name="gridTerrainTypesDisplay">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="15"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="15"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="2" Grid.Column="1" Content="Name:" />
+        <Label Grid.Row="2" Grid.Column="3" Content="{Binding Name}" />
+
+        <Label Grid.Row="3" Grid.Column="1" Content="Description:" />
+        <ScrollViewer Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2">
+            <TextBlock Text="{Binding Description}" TextWrapping="Wrap" />
+        </ScrollViewer>
+
+        <Label Grid.Row="4" Grid.Column="1" Content="Region" />
+        <Label Grid.Row="4" Grid.Column="3" Content="{Binding OperationalTerrain.Name}" />
+
+
+        <Button Grid.Row="5" Grid.Column="3" Content="Close" Click="CloseButton_Click" Margin="5 10 5 5 " HorizontalAlignment="Left"  />
+    </Grid>
+</Window>

@@ -1,0 +1,32 @@
+﻿<Window x:Class="BTMContractDrafter.Views.TerrainTypes.TerrainTypeListView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BTMContractDrafter.Views.TerrainTypes"
+        mc:Ignorable="d"
+        Title="TerrainTypeListView" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="5"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="lstTerrainTypes" Grid.Row="0" Grid.Column="1" SelectionMode="Single" Margin="10"
+                 HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <TextBlock Text="{Binding Name}" FontWeight="Bold" DockPanel.Dock="Top" MaxWidth="70"/>
+                        <TextBlock Text="{Binding Description}" FontStyle="Italic" TextWrapping="Wrap" DockPanel.Dock="Bottom" MaxWidth="600"/>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button x:Name="btnSelect" Grid.Row="1"  Grid.Column="1" Content="Select" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="btnSelect_Click" Margin="10"/>
+    </Grid>
+</Window>

@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BTMContractDrafter.Views.OperationalTerrain;
+using BTMContractDrafter.Views.TerrainTypes;
 
 namespace BTMContractDrafter
 {
@@ -74,9 +75,27 @@ namespace BTMContractDrafter
             List<OperationalTerrain> operationalTerrains =
                 ((App)Application.Current).OperationalTerrainSettingsDataSource.GetOperationalTerrain();
 
-            // Create and show the dialog to select the OperatoinalTerrain
+            // Create and show the dialog to select the OperationalTerrain
             OperationalTerrainListView dialog = new OperationalTerrainListView();
             dialog.lstOperationalTerrain.ItemsSource = operationalTerrains;
+
+            if (dialog.ShowDialog() == true)
+            {
+                // Do Nothing Let dialog handle its spin up
+                this.Activate();
+            }
+        }
+
+        private void MenuItem_TerrainTypes_Click(object sender, RoutedEventArgs e)
+        {
+            // Get the list of available TerrainTypes
+            //List<OperationalTerrain> operationalTerrains = ((App)Application.Current).OperationalTerrainSettingsDataSource.GetOperationalTerrain();
+            List<TerrainType> terrainTypes =
+                ((App)Application.Current).TerrainTypesSettingsDataSource.GetTerrainTypes();
+
+            // Create and show the dialog to select the TerrainType
+            TerrainTypeListView dialog = new TerrainTypeListView();
+            dialog.lstTerrainTypes.ItemsSource = terrainTypes;
 
             if (dialog.ShowDialog() == true)
             {
