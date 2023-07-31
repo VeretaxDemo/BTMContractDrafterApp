@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using BTMContractDrafter.Views.OperationalTerrain;
 using BTMContractDrafter.Views.TerrainTypes;
 using BTMContractDrafter.Views.Unit;
+using System.Collections.ObjectModel;
 
 namespace BTMContractDrafter
 {
@@ -107,8 +108,14 @@ namespace BTMContractDrafter
 
         private void MenuItem_AddUnit_Click(object sender, RoutedEventArgs e)
         {
-            // Open the AddUnitView window when "Add Unit" menu item is clicked
-            AddUnitView addUnitView = new AddUnitView();
+            // Load UnitSize objects from the data source
+            var unitSizeList = ((App)Application.Current).UnitSizeSettingsDataSource.GetUnitSizes();
+
+            // Convert the list of UnitSize objects to a list of their names (strings)
+            var unitSizeNames = new ObservableCollection<string>(unitSizeList.Select(unitSize => unitSize.Name));
+
+            // Open the AddUnitView window and pass the unitSizeNames collection to it
+            var addUnitView = new AddUnitView(unitSizeNames);
             addUnitView.ShowDialog();
         }
     }

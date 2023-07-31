@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,6 @@ namespace BTMContractDrafter.Views.Unit
     /// </summary>
     public partial class EditUnitControl : UserControl
     {
-        public List<Models.UnitSize> UnitSizes { get; set; }
-
-        // Dependency property for Unit property
         public static readonly DependencyProperty UnitProperty =
             DependencyProperty.Register("Unit", typeof(Models.Unit), typeof(EditUnitControl), new PropertyMetadata(null));
 
@@ -30,6 +28,18 @@ namespace BTMContractDrafter.Views.Unit
         {
             get { return (Models.Unit)GetValue(UnitProperty); }
             set { SetValue(UnitProperty, value); }
+        }
+
+
+        // Define the dependency property for UnitSizes
+        public static readonly DependencyProperty UnitSizesProperty =
+            DependencyProperty.Register("UnitSizes", typeof(IEnumerable<string>), typeof(EditUnitControl), new PropertyMetadata(null));
+
+        // Add a public property to get/set the UnitSizes using the dependency property
+        public ObservableCollection<string> UnitSizes
+        {
+            get { return (ObservableCollection<string>)GetValue(UnitSizesProperty); }
+            set { SetValue(UnitSizesProperty, value); }
         }
 
         public EditUnitControl()
