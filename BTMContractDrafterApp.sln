@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BTMContractDrafter", "BTMContractDrafter\BTMContractDrafter.csproj", "{82F64F40-89F7-4300-B8D2-F9277CFAE98A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BTMContractDrafter.WPF", "BTMContractDrafter\BTMContractDrafter.WPF.csproj", "{82F64F40-89F7-4300-B8D2-F9277CFAE98A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BTMContractDrafter.Library", "BTMContractDrafterApp.Library\BTMContractDrafter.Library.csproj", "{A0DD9B4E-A31E-4DA2-BC35-2B2DBD0D6F05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BtmContractDrafter.Library.XUnit", "BtmContractDrafter.Library.XUnit\BtmContractDrafter.Library.XUnit.csproj", "{C43D934D-DCD9-4FA2-A3A9-D2961C748807}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{82F64F40-89F7-4300-B8D2-F9277CFAE98A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82F64F40-89F7-4300-B8D2-F9277CFAE98A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82F64F40-89F7-4300-B8D2-F9277CFAE98A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0DD9B4E-A31E-4DA2-BC35-2B2DBD0D6F05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0DD9B4E-A31E-4DA2-BC35-2B2DBD0D6F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0DD9B4E-A31E-4DA2-BC35-2B2DBD0D6F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0DD9B4E-A31E-4DA2-BC35-2B2DBD0D6F05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C43D934D-DCD9-4FA2-A3A9-D2961C748807}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C43D934D-DCD9-4FA2-A3A9-D2961C748807}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C43D934D-DCD9-4FA2-A3A9-D2961C748807}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C43D934D-DCD9-4FA2-A3A9-D2961C748807}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -13,6 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BTMContractDrafter.Library.Data;
+using BTMContractDrafter.Library.Extensions;
 using BTMContractDrafter.ViewModels;
 
 namespace BTMContractDrafter.Views.Unit
@@ -41,6 +43,33 @@ namespace BTMContractDrafter.Views.Unit
             DataContext = new AddUnitViewModel(unitSizes); // Pass the unitSizes collection as a constructor argument
 
             InitializeComponent();
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            // Get the Unit data from the ViewModel or controls (replace UnitData with your actual data model)
+            UnitData unitData = new UnitData
+            {
+                UnitSizeId = (int)cmbUnitSize.SelectedValue,
+                UnitSizeName = cmbUnitSize.Text,
+                UnitName = txtUnitName.Text,
+                DragoonRating = txtDragoonRating.Text,
+                EmployerFactionReputation = txtEmployerFactionReputation.Text,
+                OppositionFactionReputation = txtOppositionFactionReputation.Text
+            };
+
+            // Perform actions to save the data (e.g., write to a file, send to a server, etc.)
+            // ...
+
+            // Serialize the UnitData object and save the data
+            string jsonData = unitData.SerializeToJson();
+            string csvData = unitData.SerializeToCsv();
+            string plainTextData = unitData.SerializeToPlainText();
         }
     }
 }

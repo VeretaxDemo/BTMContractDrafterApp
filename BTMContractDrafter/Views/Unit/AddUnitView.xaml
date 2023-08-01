@@ -9,7 +9,7 @@
     <!--<Grid>
         <local:EditUnitControl Unit="{Binding SelectedUnit}" UnitSizes="{Binding UnitSizes}" />
     </Grid>-->
-    <Grid>
+    <!--<Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="15" />
             <RowDefinition Height="Auto" />
@@ -28,6 +28,7 @@
             <ColumnDefinition Width="15" />
         </Grid.ColumnDefinitions>
 
+
         <TextBlock Text="Unit Size:" Grid.Row="1" Grid.Column="1" />
 
         <ComboBox Grid.Row="1" Grid.Column="3" x:Name="cmbUnitSize" ItemsSource="{Binding UnitSizes}" DisplayMemberPath="Name" SelectedValuePath="id" SelectedValue="{Binding SelectedUnitSize}" />
@@ -43,5 +44,62 @@
 
         <TextBlock Text="Opposition Faction Reputation:" Grid.Row="5" Grid.Column="1" />
         <TextBox Grid.Row="5" Grid.Column="3" Text="{Binding Unit.OppositionFactionReputation}" />
+
+        <StackPanel Grid.Row="6" Grid.Column="3" Orientation="Horizontal">
+            <Button  x:Name="btnSave" Content="Save" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="btnSave_Click" Margin="10" Padding="10 5"/>
+            <Button  x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="btnCancel_Click" Margin="10" Padding="10 5"/>
+        </StackPanel>
+
+    </Grid>-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
+            <!-- 10 units of vertical space -->
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
+            <!-- 10 units of vertical space -->
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
+            <!-- 10 units of vertical space -->
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
+            <!-- 10 units of vertical space -->
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="15" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="15" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="15" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Unit Size:" Grid.Row="1" Grid.Column="1" />
+        <ComboBox Grid.Row="1" Grid.Column="3" x:Name="cmbUnitSize" ItemsSource="{Binding UnitSizes}" DisplayMemberPath="Name" SelectedValuePath="id" SelectedValue="{Binding SelectedUnitSize}" />
+
+        <TextBlock Text="Unit Name:" Grid.Row="3" Grid.Column="1" />
+        <TextBox Name="txtUnitName" Grid.Row="3" Grid.Column="3" Text="{Binding Unit.UnitName}" />
+
+        <TextBlock Text="Dragoon Rating:" Grid.Row="5" Grid.Column="1" />
+        <TextBox Name="txtDragoonRating" Grid.Row="5" Grid.Column="3" Text="{Binding Unit.DragoonRating}" />
+
+        <TextBlock Text="Employer Faction Reputation:" Grid.Row="7" Grid.Column="1" />
+        <TextBox Name="txtEmployerFactionReputation" Grid.Row="7" Grid.Column="3" Text="{Binding Unit.EmployerFactionReputation}" />
+
+        <TextBlock Text="Opposition Faction Reputation:" Grid.Row="9" Grid.Column="1" />
+        <TextBox Name="txtOppositionFactionReputation" Grid.Row="9" Grid.Column="3" Text="{Binding Unit.OppositionFactionReputation}" />
+
+        <StackPanel Grid.Row="11" Grid.Column="3" Orientation="Horizontal">
+            <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="btnSave_Click" Margin="10" Padding="10 5"/>
+            <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="btnCancel_Click" Margin="10" Padding="10 5"/>
+        </StackPanel>
     </Grid>
+
 </Window>
