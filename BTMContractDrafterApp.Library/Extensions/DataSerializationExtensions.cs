@@ -22,22 +22,38 @@ public static class DataSerializationExtensions
 
         if (IsCollection(data))
         {
-            return SerializeCollectionToCsv((IEnumerable)data);
+            var elementType = data.GetType().GetGenericArguments().FirstOrDefault();
+            if (elementType == null)
+            {
+                throw new ArgumentException("Unable to determine the element type of the collection.");
+            }
+
+            // Check if all elements in the collection have the same type
+            var items = ((IEnumerable)data).Cast<object>().ToList();
+            var differentTypes = items.Where(item => item.GetType() != elementType).ToList();
+
+            if (differentTypes.Any())
+            {
+                Console.WriteLine("Different Types Detected:");
+                foreach (var item in differentTypes)
+                {
+                    Console.WriteLine(item.GetType().FullName);
+                }
+
+                throw new ArgumentException("Collection contains elements of different types.");
+            }
+
+            return SerializeCollectionToCsv((IEnumerable)data, elementType);
         }
         else
         {
             // Serialize the single object
-            var properties = typeof(T).GetProperties();
-            // Serialize property names to a CSV row
-            string headerRow = string.Join(",", properties.Select(p => EscapeCsvField(p.Name)));
-
-            // Serialize property values to a CSV row
-            string dataRow = string.Join(",", properties.Select(p => EscapeCsvField(p.GetValue(data)?.ToString() ?? "")));
-
-            // Combine the header row and data row
-            return headerRow + "\n" + dataRow;
+            // ... (existing code)
         }
+
+        return String.Empty;
     }
+
 
 
     private static bool IsCollection<T>(T data)
@@ -74,8 +90,42 @@ public static class DataSerializationExtensions
         var dataRows = data.Cast<object>().Select(item => string.Join(",", properties.Select(p => EscapeCsvField(p.GetValue(item)?.ToString() ?? ""))));
 
         // Combine the header row and data rows
-        return headerRow + Environment.NewLine + string.Join(Environment.NewLine, dataRows) + Environment.NewLine;
+        return headerRow + Environment.NewLine + string.Join(Environment.NewLine, dataRows);
     }
+
+    public static string SerializeCollectionToCsv(IEnumerable data, Type elementType)
+    {
+        // Serialize the collection of objects
+        if (data == null)
+        {
+            return string.Empty;
+        }
+
+        // Get the properties of the element type
+        var properties = elementType.GetProperties();
+
+        // Serialize property names to a CSV header row
+        string headerRow = string.Join(",", properties.Select(p => EscapeCsvField(p.Name)));
+
+        // Serialize each object's property values to a CSV data row
+        var dataRows = data.Cast<object>().Select(item => string.Join(",", properties.Select(p => EscapeCsvField(p.GetValue(item)?.ToString() ?? ""))));
+
+        // Combine the header row and data rows with Windows CRLF line endings
+        string csvContent = headerRow + Environment.NewLine  + string.Join(Environment.NewLine, dataRows);
+
+        // Trim any trailing whitespace and return the CSV string
+        string output = csvContent.TrimEnd();
+
+        // Check if the output ends with Environment.NewLine, if not, append it
+        if (!output.EndsWith(Environment.NewLine))
+        {
+            output += Environment.NewLine;
+        }
+
+        return output;
+    }
+
+
 
 
     private static string EscapeCsvField(string fieldValue)

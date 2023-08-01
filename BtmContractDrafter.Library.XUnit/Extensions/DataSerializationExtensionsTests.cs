@@ -18,6 +18,13 @@ namespace BtmContractDrafter.Library.XUnit.Extensions
             public string Name { get; set; }
         }
 
+        private class AnotherTestData
+        {
+            public int Id { get; set; }
+            public string Description { get; set; }
+        }
+
+
         [Fact]
         public void SerializeToJson_WhenCalled_ShouldNotBeNullOrEmpty()
         {
@@ -143,6 +150,22 @@ namespace BtmContractDrafter.Library.XUnit.Extensions
             // Assert
             csv.Should().BeEmpty();
         }
+
+        [Fact]
+        public void SerializeToCsv_WhenCalledWithCollectionOfDifferentTypes_ShouldThrowArgumentException()
+        {
+            // Arrange
+            var data = new List<object>
+            {
+                new TestData { Id = 1, Name = "Test Object 1" },
+                new TestData { Id = 2, Name = "Test Object 2" },
+                new AnotherTestData { Id = 3, Description = "Another Test Object 3" }
+            };
+
+            // Act & Assert
+            Assert.Throws<ArgumentException>(() => data.SerializeToCsv());
+        }
+
 
         [Fact]
         public void SerializeToPlainText_WhenCalled_ShouldNotBeNullOrEmpty()
