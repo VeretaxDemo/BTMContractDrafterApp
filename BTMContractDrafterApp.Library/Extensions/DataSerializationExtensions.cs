@@ -80,17 +80,7 @@ public static class DataSerializationExtensions
             throw new ArgumentException("Unable to determine the element type of the collection.");
         }
 
-        // Get the properties of the element type
-        var properties = elementType.GetProperties();
-
-        // Serialize property names to a CSV header row
-        string headerRow = string.Join(",", properties.Select(p => EscapeCsvField(p.Name)));
-
-        // Serialize each object's property values to a CSV data row
-        var dataRows = data.Cast<object>().Select(item => string.Join(",", properties.Select(p => EscapeCsvField(p.GetValue(item)?.ToString() ?? ""))));
-
-        // Combine the header row and data rows
-        return headerRow + Environment.NewLine + string.Join(Environment.NewLine, dataRows);
+        return SerializeCollectionToCsv(data, elementType);
     }
 
     public static string SerializeCollectionToCsv(IEnumerable data, Type elementType)
@@ -111,7 +101,7 @@ public static class DataSerializationExtensions
         var dataRows = data.Cast<object>().Select(item => string.Join(",", properties.Select(p => EscapeCsvField(p.GetValue(item)?.ToString() ?? ""))));
 
         // Combine the header row and data rows with Windows CRLF line endings
-        string csvContent = headerRow + Environment.NewLine  + string.Join(Environment.NewLine, dataRows);
+        string csvContent = headerRow + Environment.NewLine + string.Join(Environment.NewLine, dataRows);
 
         // Trim any trailing whitespace and return the CSV string
         string output = csvContent.TrimEnd();
@@ -126,7 +116,17 @@ public static class DataSerializationExtensions
     }
 
 
+    private static string CreateCsvContent(IEnumerable<PropertyInfo> properties, IEnumerable data)
+    {
+        // Serialize property names to a CSV header row
+        string headerRow = string.Join(",", properties.Select(p => EscapeCsvField(p.Name)));
 
+        // Serialize each object's property values to a CSV data row
+        var dataRows = data.Cast<object>().Select(item => string.Join(",", properties.Select(p => EscapeCsvField(p.GetValue(item)?.ToString() ?? ""))));
+
+        // Combine the header row and data rows with Windows CRLF line endings
+        return headerRow + Environment.NewLine + string.Join(Environment.NewLine, dataRows);
+    }
 
     private static string EscapeCsvField(string fieldValue)
     {

@@ -1,6 +1,7 @@
 ﻿using Moq;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using BTMContractDrafter.Library.Extensions;
 using FluentAssertions;
 using Xunit;
@@ -9,6 +10,19 @@ using System.Text.RegularExpressions;
 
 namespace BtmContractDrafter.Library.XUnit.Extensions
 {
+    public class NullElementTypeEnumerable : IEnumerable
+    {
+        public IEnumerator GetEnumerator()
+        {
+            yield break;
+        }
+
+        public Type GetType()
+        {
+            return null;
+        }
+    }
+
     public class DataSerializationExtensionsTests
     {
         // Test data
@@ -164,6 +178,19 @@ namespace BtmContractDrafter.Library.XUnit.Extensions
 
             // Act & Assert
             Assert.Throws<ArgumentException>(() => data.SerializeToCsv());
+        }
+
+        [Fact]
+        public void SerializeCollectionToCsv_WhenElementTypeIsNull_ShouldThrowArgumentException()
+        {
+            // Arrange
+            var data = new NullElementTypeEnumerable();
+
+            // Act
+            Action action = () => data.SerializeCollectionToCsv();
+
+            // Assert
+            action.Should().Throw<ArgumentException>();
         }
 
 
