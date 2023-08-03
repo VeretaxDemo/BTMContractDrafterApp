@@ -1,4 +1,5 @@
-﻿using BTMContractDrafter.Settings;
+﻿using BTMContractDrafter.Library.Managers;
+using BTMContractDrafter.Settings;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,9 @@ namespace BTMContractDrafter
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+
+            // Call the CreateFolders method to ensure the folders are created at startup
+            SaveDataManager.CreateFolders();
 
             // Create a new DI container and configure it
             var serviceProvider = new ServiceCollection()

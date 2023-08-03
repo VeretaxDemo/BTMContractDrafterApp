@@ -1,5 +1,6 @@
 ﻿using BTMContractDrafter.Library.Data;
 using BTMContractDrafter.Library.Extensions;
+using System.Text.RegularExpressions;
 
 namespace BTMContractDrafter.Library.Managers;
 
@@ -47,17 +48,22 @@ public static class SaveDataManager
         File.WriteAllText(plainTextFilePath, plainTextData);
     }
 
-    public static void SaveAllFormats(string fileName, UnitData unitData)
+    public static string SanitizeFilename(string filename)
     {
-        // Serialize the UnitData object
-        string jsonData = unitData.SerializeToJson();
-        string csvData = unitData.SerializeToCsv();
-        string plainTextData = unitData.SerializeToPlainText();
-
-        // Save data to all formats
-        SaveJson(fileName + ".json", jsonData);
-        SaveCsv(fileName + ".csv", csvData);
-        SavePlainText(fileName + ".txt", plainTextData);
+        string invalidChars = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+        Regex regex = new Regex($"[{Regex.Escape(invalidChars)}]");
+        return regex.Replace(filename, "");
     }
+
+    // Function to limit filename length
+    public static string TruncateFilename(string filename, int maxLength)
+    {
+        if (filename.Length <= maxLength)
+            return filename;
+        return filename.Substring(0, maxLength);
+    }
+
+
+
 }
 

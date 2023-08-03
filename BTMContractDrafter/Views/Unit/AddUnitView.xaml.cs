@@ -15,7 +15,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BTMContractDrafter.Library.Data;
 using BTMContractDrafter.Library.Extensions;
+using BTMContractDrafter.Library.Managers;
 using BTMContractDrafter.ViewModels;
+using BTMContractDrafter.Models;
 
 namespace BTMContractDrafter.Views.Unit
 {
@@ -53,9 +55,10 @@ namespace BTMContractDrafter.Views.Unit
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             // Get the Unit data from the ViewModel or controls (replace UnitData with your actual data model)
+            var size = cmbUnitSize.SelectedItem as Models.UnitSize;
             UnitData unitData = new UnitData
             {
-                UnitSizeId = (int)cmbUnitSize.SelectedValue,
+                UnitSizeId = size.Id,
                 UnitSizeName = cmbUnitSize.Text,
                 UnitName = txtUnitName.Text,
                 DragoonRating = txtDragoonRating.Text,
@@ -70,6 +73,9 @@ namespace BTMContractDrafter.Views.Unit
             string jsonData = unitData.SerializeToJson();
             string csvData = unitData.SerializeToCsv();
             string plainTextData = unitData.SerializeToPlainText();
+            unitData.SaveAllFormats();
+
+            this.Close();
         }
     }
 }
