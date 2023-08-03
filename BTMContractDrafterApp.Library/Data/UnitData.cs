@@ -1,6 +1,8 @@
-﻿namespace BTMContractDrafter.Library.Data;
+﻿using BTMContractDrafter.Library.Extensions;
 
-public class UnitData
+namespace BTMContractDrafter.Library.Data;
+
+public class UnitData : IPlainTextSerializable
 {
     public int UnitSizeId { get; set; } = 1;
     public string UnitSizeName { get; set; } = string.Empty;
@@ -8,4 +10,9 @@ public class UnitData
     public string DragoonRating { get; set; } = string.Empty;
     public string EmployerFactionReputation { get; set; } = string.Empty;
     public string OppositionFactionReputation { get; set; } = string.Empty;
+    public string SerializeToPlainText()
+    {
+        string output = $"Id: {UnitSizeId}{Environment.NewLine}{Environment.NewLine}Unit Name: {UnitName}{Environment.NewLine}{Environment.NewLine}Unit Size Id: {UnitSizeId}{Environment.NewLine}{Environment.NewLine}Unit Size Name: {UnitSizeName}{Environment.NewLine}{Environment.NewLine}Dragoon Rating: {DragoonRating}{Environment.NewLine}{Environment.NewLine}Employer Reputation: {EmployerFactionReputation}{Environment.NewLine}{Environment.NewLine}Opposition Reputation: {OppositionFactionReputation}{Environment.NewLine}{Environment.NewLine}";
+        return output;
+    }
 }
