@@ -30,15 +30,7 @@ namespace BTMContractDrafter.Views.Unit
 
         public AddUnitView(ObservableCollection<Models.UnitSize> unitSizes)
         {
-            // Get the UnitSizeSettingsDataSource from the App instance
-            //var app = (App)Application.Current;
-            //var unitSizeSettingsDataSource = app.UnitSizeSettingsDataSource;
-
-            // Load UnitSizes from the data source
-            //var unitSizesList = unitSizeSettingsDataSource.GetUnitSizes();
-
             // Convert the list of UnitSize objects to a list of strings
-            //var unitSizes = new ObservableCollection<string>(unitSizesList.Select(unitSize => unitSize.Name));
             UnitSizes = unitSizes;
 
             // Set the DataContext to the view model or this code-behind
@@ -66,13 +58,7 @@ namespace BTMContractDrafter.Views.Unit
                 OppositionFactionReputation = txtOppositionFactionReputation.Text
             };
 
-            // Perform actions to save the data (e.g., write to a file, send to a server, etc.)
-            // ...
-
             // Serialize the UnitData object and save the data
-            string jsonData = unitData.SerializeToJson();
-            string csvData = unitData.SerializeToCsv();
-            string plainTextData = unitData.SerializeToPlainText();
             unitData.SaveAllFormats();
 
             this.Close();
