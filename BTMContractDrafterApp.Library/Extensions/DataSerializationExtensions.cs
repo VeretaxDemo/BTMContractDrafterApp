@@ -68,6 +68,11 @@ public static class DataSerializationExtensions
         {
             // Serialize the single object
             // ... (existing code)
+            var elementType = data.GetType();
+            string headerRow = GetCsvHeaderRow(elementType);
+            string dataRow = GetCsvDataRow(data, elementType);
+
+            return $"{headerRow}{Environment.NewLine}{dataRow}{Environment.NewLine}";
         }
 
         return String.Empty;
@@ -135,23 +140,45 @@ public static class DataSerializationExtensions
         return output;
     }
 
+    private static string GetCsvHeaderRow<T>()
+    {
+        Type elementType = typeof(T);
 
-    //private static string CreateCsvContent(IEnumerable<PropertyInfo> properties, IEnumerable data)
-    //{
-    //    // Serialize property names to a CSV header row
-    //    string headerRow = string.Join(",", properties.Select(p => EscapeCsvField(p.Name)));
+        // Check if elementType is null
+        if (elementType == null)
+        {
+            throw new ArgumentNullException(nameof(elementType));
+        }
 
-    //    // Serialize each object's property values to a CSV data row
-    //    var dataRows = data.Cast<object>().Select(item => string.Join(",", properties.Select(p => EscapeCsvField(p.GetValue(item)?.ToString() ?? ""))));
+        // Get the properties of the element type
+        var properties = elementType.GetProperties();
 
-    //    // Combine the header row and data rows with Windows CRLF line endings
-    //    return headerRow + Environment.NewLine + string.Join(Environment.NewLine, dataRows);
-    //}
+        // Check if properties is null or empty
+        if (properties == null || properties.Length == 0)
+        {
+            throw new ArgumentException("No properties found for the given element type.");
+        }
+
+        // Serialize property names to a CSV header row
+        return string.Join(",", properties.Select(p => EscapeCsvField(p.Name)));
+    }
+
 
     private static string GetCsvHeaderRow(Type elementType)
     {
+        // Check if elementType is null
+        if (elementType == null)
+        {
+            throw new ArgumentNullException(nameof(elementType));
+        }
         // Get the properties of the element type
         var properties = elementType.GetProperties();
+
+        // Check if properties is null or empty
+        if (properties == null || properties.Length == 0)
+        {
+            throw new ArgumentException("No properties found for the given element type.");
+        }
 
         // Serialize property names to a CSV header row
         return string.Join(",", properties.Select(p => EscapeCsvField(p.Name)));
@@ -167,6 +194,21 @@ public static class DataSerializationExtensions
 
         // Combine the data rows with Windows CRLF line endings
         return string.Join(Environment.NewLine, dataRows);
+    }
+
+    private static string GetCsvDataRow<T>(T data, Type elementType)
+    {
+        // Get the properties of the elementType
+        var properties = elementType.GetProperties();
+        StringBuilder sb = new StringBuilder();
+        foreach (var property in properties)
+        {
+            var value = property.GetValue(data);
+            sb.Append(EscapeCsvField(value.ToString()));
+            sb.Append(","); // Add comma as a separator between property values
+        }
+        sb.Length--; // Remove the trailing comma
+        return sb.ToString();
     }
 
 

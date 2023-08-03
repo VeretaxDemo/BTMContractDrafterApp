@@ -82,6 +82,23 @@ namespace BtmContractDrafter.Library.XUnit.Fixtures
         }
 
         [Fact]
+        public void SerializeToCsv_WhenCalled_ShouldReturnCsvText()
+        {
+            // Arrange
+            var data = new TestData { Id = 1, Name = "Test Object" };
+
+            // Act
+            string csv = data.SerializeToCsv();
+            var expected = $"Id,Name{Environment.NewLine}" +
+                           $"1,Test Object{Environment.NewLine}";
+
+            // Assert
+            // Implement the CSV serialization logic and perform assertions here
+            // For the sake of simplicity, we will just check if the returned string is not empty
+            csv.Should().Be(expected);
+        }
+
+        [Fact]
         public void SerializeToCsv_WhenDataIsNull_ShouldReturnEmptyString()
         {
             // Arrange
