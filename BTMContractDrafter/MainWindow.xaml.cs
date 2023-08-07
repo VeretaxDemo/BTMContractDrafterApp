@@ -1,5 +1,4 @@
 ﻿using BTMContractDrafter.Models;
-using BTMContractDrafter.Settings;
 using BTMContractDrafter.Views.UnitSize;
 using System;
 using System.Collections.Generic;
@@ -19,6 +18,8 @@ using BTMContractDrafter.Views.OperationalTerrain;
 using BTMContractDrafter.Views.TerrainTypes;
 using BTMContractDrafter.Views.Unit;
 using System.Collections.ObjectModel;
+using BTMContractDrafter.WPF.DataSources;
+using BTMContractDrafter.WPF.Views.Unit;
 
 namespace BTMContractDrafter
 {

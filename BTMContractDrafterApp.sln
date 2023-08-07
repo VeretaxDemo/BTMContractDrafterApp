@@ -5,9 +5,11 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BTMContractDrafter.WPF", "BTMContractDrafter\BTMContractDrafter.WPF.csproj", "{82F64F40-89F7-4300-B8D2-F9277CFAE98A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BTMContractDrafter.Library", "BTMContractDrafterApp.Library\BTMContractDrafter.Library.csproj", "{A0DD9B4E-A31E-4DA2-BC35-2B2DBD0D6F05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BTMContractDrafter.Library", "BTMContractDrafterApp.Library\BTMContractDrafter.Library.csproj", "{A0DD9B4E-A31E-4DA2-BC35-2B2DBD0D6F05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BtmContractDrafter.Library.XUnit", "BtmContractDrafter.Library.XUnit\BtmContractDrafter.Library.XUnit.csproj", "{C43D934D-DCD9-4FA2-A3A9-D2961C748807}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BtmContractDrafter.Library.XUnit", "BtmContractDrafter.Library.XUnit\BtmContractDrafter.Library.XUnit.csproj", "{C43D934D-DCD9-4FA2-A3A9-D2961C748807}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BtmContractDrafter.Wpf.XUnit", "BtmContractDrafter.Wpf.XUnit\BtmContractDrafter.Wpf.XUnit.csproj", "{E38EDC05-8715-4D9F-9212-350B97EE338E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{C43D934D-DCD9-4FA2-A3A9-D2961C748807}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C43D934D-DCD9-4FA2-A3A9-D2961C748807}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C43D934D-DCD9-4FA2-A3A9-D2961C748807}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E38EDC05-8715-4D9F-9212-350B97EE338E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E38EDC05-8715-4D9F-9212-350B97EE338E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E38EDC05-8715-4D9F-9212-350B97EE338E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E38EDC05-8715-4D9F-9212-350B97EE338E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

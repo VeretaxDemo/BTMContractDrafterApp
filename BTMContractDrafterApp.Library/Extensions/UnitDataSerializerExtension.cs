@@ -1,4 +1,5 @@
 ﻿using BTMContractDrafter.Library.Data;
+using BTMContractDrafter.Library.IO;
 using BTMContractDrafter.Library.Managers;
 
 namespace BTMContractDrafter.Library.Extensions;
@@ -35,9 +36,10 @@ public static class UnitDataSerializerExtension
         string plainTextData = unitData.SerializeToPlainText();
 
         string sanitizedFileName = SaveDataManager.SanitizeFilename(fileName);
+        IFileSystem fileSystem = new FileSystem();
         // Save data to all formats
-        SaveDataManager.SaveJson(sanitizedFileName + ".json", jsonData);
-        SaveDataManager.SaveCsv(sanitizedFileName + ".csv", csvData);
-        SaveDataManager.SavePlainText(sanitizedFileName + ".txt", plainTextData);
+        SaveDataManager.SaveJson(sanitizedFileName + ".json", jsonData, fileSystem, "Unit");
+        SaveDataManager.SaveCsv(sanitizedFileName + ".csv", csvData, fileSystem, "Unit");
+        SaveDataManager.SavePlainText(sanitizedFileName + ".txt", plainTextData, fileSystem);
     }
 }

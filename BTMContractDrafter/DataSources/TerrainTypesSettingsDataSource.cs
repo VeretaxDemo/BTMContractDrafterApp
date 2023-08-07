@@ -1,8 +1,9 @@
-﻿using BTMContractDrafter.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BTMContractDrafter.Extensions;
+using BTMContractDrafter.Models;
+using BTMContractDrafter.WPF.Services;
 
-namespace BTMContractDrafter.Settings;
+namespace BTMContractDrafter.WPF.DataSources;
 
 public class TerrainTypesSettingsDataSource : ITerrainTypesSettingsDataSource
 {
@@ -23,7 +24,7 @@ public class TerrainTypesSettingsDataSource : ITerrainTypesSettingsDataSource
         List<TerrainType> defaultTerrainTypes = GetDefaultTerrainTypes();
 
         // Retrieve data from JSON file or generate it if the file doesn't exist
-        List<TerrainType> terrainTypes = dataService.GetDataFromDataSource(defaultTerrainTypes);
+        List<TerrainType> terrainTypes = dataService.GetDataFromDataSource<List<TerrainType>>(defaultTerrainTypes);
         return terrainTypes;
     }
 

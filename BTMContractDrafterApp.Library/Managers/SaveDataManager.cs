@@ -1,52 +1,75 @@
 ﻿using BTMContractDrafter.Library.Data;
 using BTMContractDrafter.Library.Extensions;
+using BTMContractDrafter.Library.IO;
 using System.Text.RegularExpressions;
 
 namespace BTMContractDrafter.Library.Managers;
 
 public static class SaveDataManager
 {
-    private static string GetFolderPath(string folderName)
+    public static string GetFolderPath(string folderName, string dataTypePath)
     {
         string baseFolderPath = "SaveData";
-        return Path.Combine(baseFolderPath, folderName, "Unit");
+        return Path.Combine(baseFolderPath, folderName, dataTypePath);
     }
 
     public static void CreateFolders()
     {
         string baseFolderPath = "SaveData";
         Directory.CreateDirectory(baseFolderPath);
-        CreateSubFolderIfNotExist("Json");
-        CreateSubFolderIfNotExist("Csv");
-        CreateSubFolderIfNotExist("PlainText");
+        CreateSubFolderIfNotExist("Json", "Unit");
+        CreateSubFolderIfNotExist("Csv", "Unit");
+        CreateSubFolderIfNotExist("PlainText", "Unit");
     }
 
-    private static void CreateSubFolderIfNotExist(string folderName)
+    private static void CreateSubFolderIfNotExist(string folderName, string dataTypePath)
     {
-        string subFolderPath = GetFolderPath(folderName);
+        string subFolderPath = GetFolderPath(folderName, dataTypePath);
         Directory.CreateDirectory(subFolderPath);
     }
 
-    public static void SaveJson(string fileName, string jsonData)
+    public static void SaveJson(string fileName, string jsonData, IFileSystem fileSystem, string dataTypePath)
     {
-        string jsonFolderPath = GetFolderPath("Json");
+        string jsonFolderPath = GetFolderPath("Json", dataTypePath);
         string jsonFilePath = Path.Combine(jsonFolderPath, fileName);
-        File.WriteAllText(jsonFilePath, jsonData);
+        fileSystem.WriteAllText(jsonFilePath, jsonData);
     }
 
-    public static void SaveCsv(string fileName, string csvData)
+    public static void SaveCsv(string fileName, string csvData, IFileSystem fileSystem, string dataTypePath)
     {
-        string csvFolderPath = GetFolderPath("Csv");
+        string csvFolderPath = GetFolderPath("Csv", dataTypePath);
         string csvFilePath = Path.Combine(csvFolderPath, fileName);
-        File.WriteAllText(csvFilePath, csvData);
+        fileSystem.WriteAllText(csvFilePath, csvData);
     }
 
-    public static void SavePlainText(string fileName, string plainTextData)
+    public static void SavePlainText(string fileName, string plainTextData, IFileSystem fileSystem)
     {
-        string plainTextFolderPath = GetFolderPath("PlainText");
+        string plainTextFolderPath = GetFolderPath("PlainText", "Unit");
         string plainTextFilePath = Path.Combine(plainTextFolderPath, fileName);
-        File.WriteAllText(plainTextFilePath, plainTextData);
+        fileSystem.WriteAllText(plainTextFilePath, plainTextData);
     }
+
+    //public static void SaveJson(string fileName, string jsonData)
+    //{
+
+    //    string jsonFolderPath = GetFolderPath("Json", "Unit");
+    //    string jsonFilePath = Path.Combine(jsonFolderPath, fileName);
+    //    File.WriteAllText(jsonFilePath, jsonData);
+    //}
+
+    //public static void SaveCsv(string fileName, string csvData)
+    //{
+    //    string csvFolderPath = GetFolderPath("Csv", "Unit");
+    //    string csvFilePath = Path.Combine(csvFolderPath, fileName);
+    //    File.WriteAllText(csvFilePath, csvData);
+    //}
+
+    //public static void SavePlainText(string fileName, string plainTextData)
+    //{
+    //    string plainTextFolderPath = GetFolderPath("PlainText", "Unit");
+    //    string plainTextFilePath = Path.Combine(plainTextFolderPath, fileName);
+    //    File.WriteAllText(plainTextFilePath, plainTextData);
+    //}
 
     public static string SanitizeFilename(string filename)
     {

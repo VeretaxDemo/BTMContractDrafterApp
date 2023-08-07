@@ -1,13 +1,14 @@
 ﻿using BTMContractDrafter.Library.Managers;
-using BTMContractDrafter.Settings;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using BTMContractDrafter.WPF.DataSources;
 
 namespace BTMContractDrafter
 {
@@ -19,10 +20,14 @@ namespace BTMContractDrafter
         private string _unitSizeSettingsFilePath = "UnitSizesSettings.json";
         private string _operationalTerrainSettingsFilePath = "OperationalTerrainsSettings.json";
         private string _terrainTypesSettingsFilePath = "TerrainTypesSettingsDataSource.json";
+
+        private string _dragoonRatingSettingsFilePath = "DragoonRatingsSettings.json";
+
         // Create a property to hold the data source instance
         public IUnitSizeSettingsDataSource UnitSizeSettingsDataSource { get; private set; }
         public IOperationalTerrainSettingsDataSource OperationalTerrainSettingsDataSource { get; set; }
         public ITerrainTypesSettingsDataSource TerrainTypesSettingsDataSource { get; set; }
+        public IDragoonRatingsSettingsDataSource DragoonRatingsSettingsDataSource { get; set; }
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -39,18 +44,28 @@ namespace BTMContractDrafter
                 .AddSingleton<ITerrainTypesSettingsDataSource>(provider =>
                     new TerrainTypesSettingsDataSource(_terrainTypesSettingsFilePath,
                         ((App)Application.Current).OperationalTerrainSettingsDataSource.GetOperationalTerrain()))
+                .AddSingleton<IDragoonRatingsSettingsDataSource>(provider => new DragoonRatingsSettingsDataSource(_dragoonRatingSettingsFilePath,((App)Application.Current).DragoonRatingsSettingsDataSource.GetDragoonRatings()))
+                //.AddSingleton<IReadOnlyDictionary<string, short>>(sp =>
+                //{
+
+                //    //Dictionary<string, short> dictionaryData = new Dictionary<string, short>
+                //    //{
+                //    //    { "F", -5 },
+                //    //    { "D", -3 },
+                //    //    { "C", 0 },
+                //    //    { "B", 3 },
+                //    //    { "A", 5 },
+                //    //    // we aren't enabling S right now { "S", 7 }
+                //    //};
+                //    //return new ReadOnlyDictionary<string, short>(dictionaryData);
+                //})
                 .BuildServiceProvider();
-
-            //UnitSizeSettingsDataSource = CreateDataSource<UnitSizeSettingsDataSource>(_unitSizeSettingsFilePath);
-
-            //OperationalTerrainSettingsDataSource = CreateDataSource<OperationalTerrainSettingsDataSource>(_operationalTerrainSettingsFilePath);
-            //TerrainTypesSettingsDataSource =
-            //    CreateDataSource<TerrainTypesSettingsDataSource>(_terrainTypesSettingsFilePath);
 
             // Get the data sources from the DI container
             UnitSizeSettingsDataSource = serviceProvider.GetRequiredService<IUnitSizeSettingsDataSource>();
             OperationalTerrainSettingsDataSource = serviceProvider.GetRequiredService<IOperationalTerrainSettingsDataSource>();
             TerrainTypesSettingsDataSource = serviceProvider.GetRequiredService<ITerrainTypesSettingsDataSource>();
+            DragoonRatingsSettingsDataSource = serviceProvider.GetRequiredService<IDragoonRatingsSettingsDataSource>();
         }
 
         // Generic method to create data sources based on the type T

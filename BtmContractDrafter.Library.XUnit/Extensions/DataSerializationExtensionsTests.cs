@@ -1,9 +1,10 @@
 ﻿using System.Text.Json;
 using System.Xml.Linq;
+using BtmContractDrafter.Library.XUnit.Fixtures;
 using BTMContractDrafter.Library.Extensions;
 using FluentAssertions;
 
-namespace BtmContractDrafter.Library.XUnit.Fixtures
+namespace BtmContractDrafter.Library.XUnit.Extensions
 {
     // Test data
 
@@ -59,7 +60,7 @@ namespace BtmContractDrafter.Library.XUnit.Fixtures
             // Assert
             // We are calling this Fully Qualified because it enables us to rely on a
             // Framework provided method instead of just a third Party Library
-            var expectedJson = System.Text.Json.JsonSerializer.Serialize(data, new JsonSerializerOptions
+            var expectedJson = JsonSerializer.Serialize(data, new JsonSerializerOptions
             {
                 WriteIndented = true // To format the JSON string with indentation
             });
@@ -213,7 +214,7 @@ namespace BtmContractDrafter.Library.XUnit.Fixtures
             var elementType = typeof(TestData); // You can set the elementType to any type since data is null
 
             // Act
-            string csv = DataSerializationExtensions.SerializeCollectionToCsv(data, elementType);
+            string csv = data.SerializeCollectionToCsv(elementType);
 
             // Assert
             csv.Should().BeEmpty();

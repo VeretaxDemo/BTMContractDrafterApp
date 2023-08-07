@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Windows;
-using global::BTMContractDrafter.Models;
-using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using BTMContractDrafter.Models;
+using BTMContractDrafter.WPF.Services;
 
-namespace BTMContractDrafter.Settings;
+namespace BTMContractDrafter.WPF.DataSources;
 
 public class UnitSizeSettingsDataSource : IUnitSizeSettingsDataSource
 {

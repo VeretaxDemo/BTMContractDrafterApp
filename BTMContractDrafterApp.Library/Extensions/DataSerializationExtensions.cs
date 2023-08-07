@@ -1,7 +1,7 @@
 ﻿using System.Collections;
-using Newtonsoft.Json;
 using System.Reflection;
 using System.Text;
+using System.Text.Json;
 
 namespace BTMContractDrafter.Library.Extensions;
 
@@ -14,8 +14,7 @@ public static class DataSerializationExtensions
             throw new ArgumentNullException(nameof(data));
         }
 
-        Type dataType = typeof(T);
-        Type elementType = data.GetType().GetGenericArguments().FirstOrDefault();
+        Type? elementType = data?.GetType()?.GetGenericArguments()?.FirstOrDefault();
 
         if (elementType == null)
         {
@@ -25,23 +24,27 @@ public static class DataSerializationExtensions
         return elementType;
     }
 
-
     // JSON serialization as a generic extension method
     public static string SerializeToJson<T>(this T data)
     {
-        return JsonConvert.SerializeObject(data, Newtonsoft.Json.Formatting.Indented);
+        JsonSerializerOptions options = new JsonSerializerOptions
+        {
+            WriteIndented = true
+        };
+
+        return JsonSerializer.Serialize(data, options);
     }
 
     public static string SerializeToCsv<T>(this T data)
     {
         if (data == null)
         {
-            return String.Empty;
+            return string.Empty;
         }
 
         if (IsCollection(data))
         {
-            var elementType = data.GetType().GetGenericArguments().FirstOrDefault();
+            var elementType = data?.GetType().GetGenericArguments().FirstOrDefault();
             if (elementType == null)
             {
                 throw new ArgumentException("Unable to determine the element type of the collection.");
@@ -75,10 +78,8 @@ public static class DataSerializationExtensions
             return $"{headerRow}{Environment.NewLine}{dataRow}{Environment.NewLine}";
         }
 
-        return String.Empty;
+        return string.Empty;
     }
-
-
 
     private static bool IsCollection<T>(T data)
     {
@@ -107,7 +108,7 @@ public static class DataSerializationExtensions
         return SerializeCollectionToCsv(data, elementType);
     }
 
-    public static string SerializeCollectionToCsv(IEnumerable data, Type elementType)
+    public static string SerializeCollectionToCsv(this IEnumerable data, Type elementType)
     {
         // Serialize the collection of objects
         if (data == null)
@@ -125,7 +126,6 @@ public static class DataSerializationExtensions
         string dataRows = GetCsvDataRows(data, elementType);
 
         // Combine the header row and data rows with Windows CRLF line endings
-        //string csvContent = headerRow + Environment.NewLine + string.Join(Environment.NewLine, dataRows);
         string csvContent = headerRow + Environment.NewLine + dataRows + Environment.NewLine;
 
         // Trim any trailing whitespace and return the CSV string

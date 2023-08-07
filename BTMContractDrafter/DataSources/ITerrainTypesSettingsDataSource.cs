@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using BTMContractDrafter.Models;
 
-namespace BTMContractDrafter.Settings;
+namespace BTMContractDrafter.WPF.DataSources;
 
 public interface ITerrainTypesSettingsDataSource
 {

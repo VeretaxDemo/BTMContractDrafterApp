@@ -1,7 +1,8 @@
-﻿using BTMContractDrafter.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using BTMContractDrafter.Models;
+using BTMContractDrafter.WPF.Services;
 
-namespace BTMContractDrafter.Settings;
+namespace BTMContractDrafter.WPF.DataSources;
 
 public class OperationalTerrainSettingsDataSource : IOperationalTerrainSettingsDataSource
 {

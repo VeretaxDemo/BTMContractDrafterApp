@@ -1,5 +1,4 @@
 ﻿using BTMContractDrafter.Models;
-using BTMContractDrafter.Settings;
 //using GalaSoft.MvvmLight;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

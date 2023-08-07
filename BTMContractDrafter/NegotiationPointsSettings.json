@@ -1,0 +1,41 @@
+{
+  "Defaults": {
+    "BasePoint": 5,
+    "UnitSize": 1,
+    "DragoonRatingValue": 0,
+    "DragoonRating": 3,
+    "EmployerRating": 0,
+    "PayRate": 900,
+    "ContractWordGoal": 40000,
+    "ContractTime": 3,
+    "DoubleSalvageWordGoal": 100000,
+    "EmployerReputationGain": 3,
+    "OppositionReputationLoss": -3
+  },
+  "Minimums": {
+    "BasePoint": 5,
+    "UnitSize": 1,
+    "DragoonRatingValue": 0,
+    "DragoonRating": -5,
+    "EmployerRating": -9,
+    "PayRate": 400,
+    "ContractWordGoal": 10000,
+    "ContractTime": 1,
+    "DoubleSalvageWordGoal": 40000,
+    "EmployerReputationGain": 1,
+    "OppositionReputationLoss": -5
+  },
+  "Maximums": {
+    "BasePoint": 5,
+    "UnitSize": 5,
+    "DragoonRatingValue": 0,
+    "DragoonRating": 3,
+    "EmployerRating": 10,
+    "PayRate": 2100,
+    "ContractWordGoal": 40000,
+    "ContractTime": 6,
+    "DoubleSalvageWordGoal": 100000,
+    "EmployerReputationGain": 5,
+    "OppositionReputationLoss": 0
+  }
+}
