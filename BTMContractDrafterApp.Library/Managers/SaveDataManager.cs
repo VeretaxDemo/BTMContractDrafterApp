@@ -42,9 +42,9 @@ public static class SaveDataManager
         fileSystem.WriteAllText(csvFilePath, csvData);
     }
 
-    public static void SavePlainText(string fileName, string plainTextData, IFileSystem fileSystem)
+    public static void SavePlainText(string fileName, string plainTextData, IFileSystem fileSystem, string dataTypePath)
     {
-        string plainTextFolderPath = GetFolderPath("PlainText", "Unit");
+        string plainTextFolderPath = GetFolderPath("PlainText", dataTypePath);
         string plainTextFilePath = Path.Combine(plainTextFolderPath, fileName);
         fileSystem.WriteAllText(plainTextFilePath, plainTextData);
     }

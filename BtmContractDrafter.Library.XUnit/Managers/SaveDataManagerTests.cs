@@ -1,4 +1,5 @@
-﻿using BTMContractDrafter.Library.Managers;
+﻿using BtmContractDrafter.Library.XUnit.Mocks;
+using BTMContractDrafter.Library.Managers;
 using FluentAssertions;
 using System;
 using System.Text.RegularExpressions;
@@ -72,6 +73,66 @@ namespace BtmContractDrafter.Library.XUnit.Managers
         }
 
         // Additional tests for SaveJson, SaveCsv, and SavePlainText can be written similarly by mocking the File I/O operations and verifying the output.
+        [Fact]
+        public void SaveJson_ShouldWriteToFile()
+        {
+            // Arrange
+            string fileName = "data.json";
+            string jsonData = "{ \"key\": \"value\" }";
+            string dataTypePath = "Unit";
+
+            // Create the mock file system
+            var mockFileSystem = new FakeFileSystem();
+
+            // Act
+            SaveDataManager.SaveJson(fileName, jsonData, mockFileSystem, dataTypePath);
+
+            // Assert
+            string expectedPath = Path.Combine("SaveData", "Json", "Unit", fileName);
+            mockFileSystem.FileExists(expectedPath).Should().BeTrue();
+            mockFileSystem.GetFile(expectedPath).TextContents.Should().Be(jsonData);
+        }
+
+        [Fact]
+        public void SaveCsv_ShouldWriteToFile()
+        {
+            // Arrange
+            string fileName = "data.csv";
+            string csvData = "1,Test1\n2,Test2\n3,Test3";
+            string dataTypePath = "Unit";
+
+            // Create the mock file system
+            var mockFileSystem = new FakeFileSystem();
+
+            // Act
+            SaveDataManager.SaveCsv(fileName, csvData, mockFileSystem, dataTypePath);
+
+            // Assert
+            string expectedPath = Path.Combine("SaveData", "Csv", "Unit", fileName);
+            mockFileSystem.FileExists(expectedPath).Should().BeTrue();
+            mockFileSystem.GetFile(expectedPath).TextContents.Should().Be(csvData);
+        }
+
+        [Fact]
+        public void SavePlainText_ShouldWriteToFile()
+        {
+            // Arrange
+            string fileName = "data.txt";
+            string plainTextData = "This is a test data.";
+            string dataTypePath = "Unit";
+
+            // Create the mock file system
+            var mockFileSystem = new FakeFileSystem();
+
+            // Act
+            SaveDataManager.SavePlainText(fileName, plainTextData, mockFileSystem, dataTypePath);
+
+            // Assert
+            string expectedPath = Path.Combine("SaveData", "PlainText", "Unit", fileName);
+            mockFileSystem.FileExists(expectedPath).Should().BeTrue();
+            mockFileSystem.GetFile(expectedPath).TextContents.Should().Be(plainTextData);
+        }
+
 
         // Note: It's important to make sure the file system is not actually accessed during unit testing to keep the tests fast and isolated. For that reason, you should use a mocking library or create mock implementations of the File I/O operations, as shown in previous examples.
     }

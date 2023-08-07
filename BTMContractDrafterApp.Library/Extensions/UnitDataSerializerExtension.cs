@@ -38,8 +38,9 @@ public static class UnitDataSerializerExtension
         string sanitizedFileName = SaveDataManager.SanitizeFilename(fileName);
         IFileSystem fileSystem = new FileSystem();
         // Save data to all formats
-        SaveDataManager.SaveJson(sanitizedFileName + ".json", jsonData, fileSystem, "Unit");
-        SaveDataManager.SaveCsv(sanitizedFileName + ".csv", csvData, fileSystem, "Unit");
-        SaveDataManager.SavePlainText(sanitizedFileName + ".txt", plainTextData, fileSystem);
+        var dataTypePath = "Unit";
+        SaveDataManager.SaveJson(sanitizedFileName + ".json", jsonData, fileSystem, dataTypePath);
+        SaveDataManager.SaveCsv(sanitizedFileName + ".csv", csvData, fileSystem, dataTypePath);
+        SaveDataManager.SavePlainText(sanitizedFileName + ".txt", plainTextData, fileSystem, dataTypePath);
     }
 }
