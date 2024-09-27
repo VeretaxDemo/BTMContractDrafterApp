@@ -7,11 +7,13 @@ namespace BTMContractDrafter.WPF.DataSources;
 public class DragoonRatingsSettingsDataSource : IDragoonRatingsSettingsDataSource
 {
     private string _settingsFilePath; //"DragoonRatingsSettings.json";
-    private IDragoonRatingsSettingsDataSource _dragoonRatings { get; set; }
-    public DragoonRatingsSettingsDataSource(string settingsFilePath, IDragoonRatingsSettingsDataSource dragoonRatingsSettingsDataSource)
+    /*private IDragoonRatingsSettingsDataSource _dragoonRatings { get; set; }*/
+    private IDragoonRatingModifiers _dragoonRatings { get; set; }
+    public DragoonRatingsSettingsDataSource(string settingsFilePath, IDragoonRatingModifiers dragoonRatings)
     {
         _settingsFilePath = settingsFilePath;
-        _dragoonRatings = dragoonRatingsSettingsDataSource;
+        _dragoonRatings = dragoonRatings;
+        /*_dragoonRatings = dragoonRatingsSettingsDataSource;*/
     }
 
     private IDragoonRatingModifiers GetDefaultDragoonRatings()

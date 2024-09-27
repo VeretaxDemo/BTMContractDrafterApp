@@ -1,8 +1,8 @@
-﻿using BtmContractDrafter.Library.XUnit.Mocks;
-using BTMContractDrafter.Library.Managers;
+﻿using BTMContractDrafter.Library.Managers;
 using FluentAssertions;
 using System;
 using System.Text.RegularExpressions;
+using BtmContractDrafter.Library.XUnit.Fakes;
 using Xunit;
 
 namespace BtmContractDrafter.Library.XUnit.Managers

@@ -1,6 +1,6 @@
 ﻿using BTMContractDrafter.Library.IO;
 
-namespace BtmContractDrafter.Library.XUnit.Mocks;
+namespace BtmContractDrafter.Library.XUnit.Fakes;
 
 public class FakeFileSystem : IFileSystem
 {

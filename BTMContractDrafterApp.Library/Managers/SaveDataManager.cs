@@ -7,6 +7,10 @@ namespace BTMContractDrafter.Library.Managers;
 
 public static class SaveDataManager
 {
+    // Add this property to hold the file system instance
+    public static IFileSystem FileSystem { get; set; } = new FileSystem();
+
+
     public static string GetFolderPath(string folderName, string dataTypePath)
     {
         string baseFolderPath = "SaveData";
@@ -48,28 +52,6 @@ public static class SaveDataManager
         string plainTextFilePath = Path.Combine(plainTextFolderPath, fileName);
         fileSystem.WriteAllText(plainTextFilePath, plainTextData);
     }
-
-    //public static void SaveJson(string fileName, string jsonData)
-    //{
-
-    //    string jsonFolderPath = GetFolderPath("Json", "Unit");
-    //    string jsonFilePath = Path.Combine(jsonFolderPath, fileName);
-    //    File.WriteAllText(jsonFilePath, jsonData);
-    //}
-
-    //public static void SaveCsv(string fileName, string csvData)
-    //{
-    //    string csvFolderPath = GetFolderPath("Csv", "Unit");
-    //    string csvFilePath = Path.Combine(csvFolderPath, fileName);
-    //    File.WriteAllText(csvFilePath, csvData);
-    //}
-
-    //public static void SavePlainText(string fileName, string plainTextData)
-    //{
-    //    string plainTextFolderPath = GetFolderPath("PlainText", "Unit");
-    //    string plainTextFilePath = Path.Combine(plainTextFolderPath, fileName);
-    //    File.WriteAllText(plainTextFilePath, plainTextData);
-    //}
 
     public static string SanitizeFilename(string filename)
     {

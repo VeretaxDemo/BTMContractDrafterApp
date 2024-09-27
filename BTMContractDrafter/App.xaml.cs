@@ -44,7 +44,17 @@ namespace BTMContractDrafter
                 .AddSingleton<ITerrainTypesSettingsDataSource>(provider =>
                     new TerrainTypesSettingsDataSource(_terrainTypesSettingsFilePath,
                         ((App)Application.Current).OperationalTerrainSettingsDataSource.GetOperationalTerrain()))
-                .AddSingleton<IDragoonRatingsSettingsDataSource>(provider => new DragoonRatingsSettingsDataSource(_dragoonRatingSettingsFilePath,((App)Application.Current).DragoonRatingsSettingsDataSource.GetDragoonRatings()))
+                .AddSingleton<IDragoonRatingsSettingsDataSource>(provider =>
+                {
+                    // Initialize the DragoonRatingsSettingsDataSource
+                    var dragoonRatingsDataSource = new DragoonRatingsSettingsDataSource(_dragoonRatingSettingsFilePath, null);
+
+                    // Set the dragoon ratings within this instance
+                    dragoonRatingsDataSource.GetDragoonRatings();
+
+                    return dragoonRatingsDataSource;
+                })
+                /*.AddSingleton<IDragoonRatingsSettingsDataSource>(provider => new DragoonRatingsSettingsDataSource(_dragoonRatingSettingsFilePath,((App)Application.Current).DragoonRatingsSettingsDataSource.GetDragoonRatings()))*/
                 //.AddSingleton<IReadOnlyDictionary<string, short>>(sp =>
                 //{
 

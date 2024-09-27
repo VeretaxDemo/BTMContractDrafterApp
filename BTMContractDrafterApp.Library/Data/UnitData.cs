@@ -4,11 +4,6 @@ using BTMContractDrafter.Library.Managers;
 
 namespace BTMContractDrafter.Library.Data;
 
-public interface ISanitizedFilenameCreator
-{
-    string GenerateValidFilename();
-}
-
 public class UnitData : IPlainTextSerializable, ISanitizedFilenameCreator
 {
     public int UnitSizeId { get; set; } = 1;
@@ -26,7 +21,7 @@ public class UnitData : IPlainTextSerializable, ISanitizedFilenameCreator
 
     public string GenerateValidFilename()
     {
-        return this.CreateValidFilename();
+        return this.CreateValidFilename(UnitDataSerializerExtension.DefaultDateFormat);
     }
 
     public bool SaveUnitDataInAllFormats()

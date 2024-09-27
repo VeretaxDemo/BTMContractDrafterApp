@@ -1,4 +1,4 @@
-﻿namespace BtmContractDrafter.Library.XUnit.Mocks;
+﻿namespace BtmContractDrafter.Library.XUnit.Fakes;
 
 public class FakeFile
 {

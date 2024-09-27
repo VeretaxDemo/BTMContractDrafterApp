@@ -2,6 +2,7 @@
 using System.Windows;
 using BTMContractDrafter.Library.Data;
 using BTMContractDrafter.Library.Extensions;
+using BTMContractDrafter.Library.IO;
 using BTMContractDrafter.ViewModels;
 
 namespace BTMContractDrafter.WPF.Views.Unit
@@ -44,7 +45,7 @@ namespace BTMContractDrafter.WPF.Views.Unit
             };
 
             // Serialize the UnitData object and save the data
-            unitData.SaveAllFormats();
+            unitData.SaveAllFormats(new FileSystem());
 
             this.Close();
         }
