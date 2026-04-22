@@ -9,7 +9,7 @@ public class NullElementTypeEnumerable : IEnumerable
         yield break;
     }
 
-    public Type GetType()
+    public Type? GetElementType()
     {
         return null;
     }

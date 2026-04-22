@@ -90,7 +90,7 @@ namespace BtmContractDrafter.Library.XUnit.Managers
             // Assert
             string expectedPath = Path.Combine("SaveData", "Json", "Unit", fileName);
             mockFileSystem.FileExists(expectedPath).Should().BeTrue();
-            mockFileSystem.GetFile(expectedPath).TextContents.Should().Be(jsonData);
+            mockFileSystem.GetFile(expectedPath)!.TextContents.Should().Be(jsonData);
         }
 
         [Fact]
@@ -110,7 +110,7 @@ namespace BtmContractDrafter.Library.XUnit.Managers
             // Assert
             string expectedPath = Path.Combine("SaveData", "Csv", "Unit", fileName);
             mockFileSystem.FileExists(expectedPath).Should().BeTrue();
-            mockFileSystem.GetFile(expectedPath).TextContents.Should().Be(csvData);
+            mockFileSystem.GetFile(expectedPath)!.TextContents.Should().Be(csvData);
         }
 
         [Fact]
@@ -130,7 +130,7 @@ namespace BtmContractDrafter.Library.XUnit.Managers
             // Assert
             string expectedPath = Path.Combine("SaveData", "PlainText", "Unit", fileName);
             mockFileSystem.FileExists(expectedPath).Should().BeTrue();
-            mockFileSystem.GetFile(expectedPath).TextContents.Should().Be(plainTextData);
+            mockFileSystem.GetFile(expectedPath)!.TextContents.Should().Be(plainTextData);
         }
 
 

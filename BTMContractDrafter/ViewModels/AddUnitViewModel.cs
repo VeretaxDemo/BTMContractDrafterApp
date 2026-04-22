@@ -9,9 +9,8 @@ using System.Windows;
 namespace BTMContractDrafter.ViewModels;
 
 public class AddUnitViewModel : ViewModelBase
-{
-    private ObservableCollection<UnitSize> _unitSizes;
-    private Unit _selectedUnit;
+{   private ObservableCollection<UnitSize> _unitSizes = new();
+    private Unit _selectedUnit = new();
 
     public ObservableCollection<UnitSize> UnitSizes
     {

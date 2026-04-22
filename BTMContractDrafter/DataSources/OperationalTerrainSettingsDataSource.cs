@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using BTMContractDrafter.Models;
 using BTMContractDrafter.WPF.Services;
 
@@ -10,8 +11,13 @@ public class OperationalTerrainSettingsDataSource : IOperationalTerrainSettingsD
 
     public OperationalTerrainSettingsDataSource(string settingsFilePath)
     {
+        if (string.IsNullOrEmpty(settingsFilePath))
+        {
+            throw new ArgumentException("settingsFilePath cannot be null or empty", nameof(settingsFilePath));
+        }
         _settingsFilePath = settingsFilePath;
     }
+
     private List<OperationalTerrain> GetDefaultOperationalTerrain()
     {
         return new List<OperationalTerrain>
@@ -51,12 +57,7 @@ public class OperationalTerrainSettingsDataSource : IOperationalTerrainSettingsD
         List<OperationalTerrain> defaultOperationalTerrain = GetDefaultOperationalTerrain();
 
         // Retrieve data from JSON file or generate it if the file doesn't exist
-        List<OperationalTerrain> operationalTerrain = dataService.GetDataFromDataSource(defaultOperationalTerrain);
+        List<OperationalTerrain> operationalTerrain = dataService.GetDataFromDataSource(defaultOperationalTerrain) ?? new List<OperationalTerrain>();
         return operationalTerrain;
     }
-
-    //private OperationalTerrain FindOperationalTerrain(List<OperationalTerrain> operationalTerrainList, int operationalTerrainId)
-    //{
-    //    return operationalTerrainList.Find(ot => ot.Id == operationalTerrainId);
-    //}
 }

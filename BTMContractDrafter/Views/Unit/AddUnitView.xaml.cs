@@ -34,6 +34,14 @@ namespace BTMContractDrafter.WPF.Views.Unit
         {
             // Get the Unit data from the ViewModel or controls (replace UnitData with your actual data model)
             var size = cmbUnitSize.SelectedItem as BTMContractDrafter.Models.UnitSize;
+
+                
+            if (size is null)
+            {
+                MessageBox.Show("Please select a unit size before saving.", "Missing Unit Size", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            
             UnitData unitData = new UnitData
             {
                 UnitSizeId = size.Id,

@@ -29,10 +29,10 @@ namespace BtmContractDrafter.Library.XUnit.Extensions
         public void GetElementTypeOfCollection_NullList_ShouldThrowArgumentNullException()
         {
             // Arrange
-            List<int> list = null;
+            List<int>? list = null;
 
             // Act & Assert
-            Assert.Throws<ArgumentNullException>(() => DataSerializationExtensions.GetElementTypeOfCollection(list));
+            Assert.Throws<ArgumentNullException>(() => DataSerializationExtensions.GetElementTypeOfCollection(list!));
         }
 
         [Fact]
@@ -103,7 +103,7 @@ namespace BtmContractDrafter.Library.XUnit.Extensions
         public void SerializeToCsv_WhenDataIsNull_ShouldReturnEmptyString()
         {
             // Arrange
-            TestData data = null;
+            TestData? data = null;
 
             // Act
             string csv = data.SerializeToCsv();
@@ -116,10 +116,10 @@ namespace BtmContractDrafter.Library.XUnit.Extensions
         public void SerializeCollectionToCsv_WhenDataIsNull_ShouldReturnEmptyString()
         {
             // Arrange
-            IEnumerable<TestData> data = null;
+            IEnumerable<TestData>? data = null;
 
             // Act
-            string csv = data.SerializeCollectionToCsv();
+            string csv = data!.SerializeCollectionToCsv();
 
             // Assert
             csv.Should().BeEmpty();
@@ -169,7 +169,7 @@ namespace BtmContractDrafter.Library.XUnit.Extensions
         public void SerializeToCsv_WhenCalledWithNullCollection_ShouldReturnEmptyString()
         {
             // Arrange
-            List<TestData> data = null;
+            List<TestData>? data = null;
 
             // Act
             string csv = data.SerializeToCsv();
@@ -210,11 +210,11 @@ namespace BtmContractDrafter.Library.XUnit.Extensions
         public void SerializeCollectionToCsv_WhenCalledAsNonExtensionMethodWithDataIsNull_ShouldReturnEmptyString()
         {
             // Arrange
-            IEnumerable<TestData> data = null;
+            IEnumerable<TestData>? data = null;
             var elementType = typeof(TestData); // You can set the elementType to any type since data is null
 
             // Act
-            string csv = data.SerializeCollectionToCsv(elementType);
+            string csv = data!.SerializeCollectionToCsv(elementType);
 
             // Assert
             csv.Should().BeEmpty();
@@ -348,7 +348,7 @@ namespace BtmContractDrafter.Library.XUnit.Extensions
         // Sample class implementing IPlainTextSerializable
         public class CustomPlainTextSerializable : IPlainTextSerializable
         {
-            public string CustomProperty { get; set; }
+            public string CustomProperty { get; set; } = string.Empty;
 
             public string SerializeToPlainText()
             {
@@ -392,6 +392,7 @@ namespace BtmContractDrafter.Library.XUnit.Extensions
         {
             // Arrange
             var data = new TestData { Id = 0, Name = null };
+            
 
             // Act
             string plainText = data.SerializeToPlainText();

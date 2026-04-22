@@ -5,7 +5,7 @@ namespace BtmContractDrafter.Library.XUnit.Fixtures;
 public class AnotherTestData : IPlainTextSerializable
 {
     public int Id { get; set; }
-    public string Description { get; set; }
+    public string? Description { get; set; } = string.Empty;
 
     public string SerializeToPlainText()
     {

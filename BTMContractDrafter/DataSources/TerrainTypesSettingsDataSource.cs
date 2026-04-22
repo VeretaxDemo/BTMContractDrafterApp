@@ -24,7 +24,7 @@ public class TerrainTypesSettingsDataSource : ITerrainTypesSettingsDataSource
         List<TerrainType> defaultTerrainTypes = GetDefaultTerrainTypes();
 
         // Retrieve data from JSON file or generate it if the file doesn't exist
-        List<TerrainType> terrainTypes = dataService.GetDataFromDataSource<List<TerrainType>>(defaultTerrainTypes);
+        List<TerrainType> terrainTypes = dataService.GetDataFromDataSource(defaultTerrainTypes);
         return terrainTypes;
     }
 

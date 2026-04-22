@@ -66,6 +66,7 @@ public class UnitSizeSettingsDataSource : IUnitSizeSettingsDataSource
         // Retrieve data from JSON file or generate it if the file doesn't exist
         List<UnitSize> unitSizes = dataService.GetDataFromDataSource(defaultUnitSizes);
 
-        return unitSizes;
+        // Ensure we return a single UnitSize object
+        return unitSizes.Count > 0 ? new List<UnitSize> { unitSizes[0] } : defaultUnitSizes;
     }
 }

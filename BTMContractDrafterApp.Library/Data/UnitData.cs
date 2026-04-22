@@ -26,13 +26,13 @@ public class UnitData : IPlainTextSerializable, ISanitizedFilenameCreator
 
     public bool SaveUnitDataInAllFormats()
     {
-        bool result = false;
         try
         {
             this.SaveAllFormats();
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
+            Console.Error.WriteLine($"Failed to save unit data: {ex}");
             return false;
         }
 

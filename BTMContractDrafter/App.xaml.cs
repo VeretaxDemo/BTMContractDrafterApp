@@ -24,10 +24,10 @@ namespace BTMContractDrafter
         private string _dragoonRatingSettingsFilePath = "DragoonRatingsSettings.json";
 
         // Create a property to hold the data source instance
-        public IUnitSizeSettingsDataSource UnitSizeSettingsDataSource { get; private set; }
-        public IOperationalTerrainSettingsDataSource OperationalTerrainSettingsDataSource { get; set; }
-        public ITerrainTypesSettingsDataSource TerrainTypesSettingsDataSource { get; set; }
-        public IDragoonRatingsSettingsDataSource DragoonRatingsSettingsDataSource { get; set; }
+        public IUnitSizeSettingsDataSource UnitSizeSettingsDataSource { get; private set; } = null!;
+        public IOperationalTerrainSettingsDataSource OperationalTerrainSettingsDataSource { get; set; } = null!;
+        public ITerrainTypesSettingsDataSource TerrainTypesSettingsDataSource { get; set; } = null!;
+        public IDragoonRatingsSettingsDataSource DragoonRatingsSettingsDataSource { get; set; } = null!;
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -79,14 +79,14 @@ namespace BTMContractDrafter
         }
 
         // Generic method to create data sources based on the type T
-        private T CreateDataSource<T>(string settingsFilePath) where T : class
+        private T? CreateDataSource<T>(string settingsFilePath) where T : class
         {
             Type targetType = typeof(T);
 
             try
             {
                 // Use reflection to create an instance of the target type
-                object instance = Activator.CreateInstance(targetType, settingsFilePath);
+                object? instance = Activator.CreateInstance(targetType, settingsFilePath);
 
                 // Cast the instance to the desired interface type
                 return instance as T;
@@ -95,6 +95,7 @@ namespace BTMContractDrafter
             {
                 // Handle any errors that may occur during instance creation
                 // You can log the error or show a message box, etc.
+                Console.Error.WriteLine($"Failed to create data source for {targetType.Name}: {ex}");
                 return null;
             }
         }

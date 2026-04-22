@@ -8,8 +8,8 @@ public class DragoonRatingsSettingsDataSource : IDragoonRatingsSettingsDataSourc
 {
     private string _settingsFilePath; //"DragoonRatingsSettings.json";
     /*private IDragoonRatingsSettingsDataSource _dragoonRatings { get; set; }*/
-    private IDragoonRatingModifiers _dragoonRatings { get; set; }
-    public DragoonRatingsSettingsDataSource(string settingsFilePath, IDragoonRatingModifiers dragoonRatings)
+    private IDragoonRatingModifiers? _dragoonRatings { get; set; }
+    public DragoonRatingsSettingsDataSource(string settingsFilePath, IDragoonRatingModifiers? dragoonRatings)
     {
         _settingsFilePath = settingsFilePath;
         _dragoonRatings = dragoonRatings;
@@ -36,7 +36,7 @@ public class DragoonRatingsSettingsDataSource : IDragoonRatingsSettingsDataSourc
         var dataService = new GeneralSettingsService<DragoonRatingModifiers>(_settingsFilePath);
 
         // Get the default UnitSize objects as a backup
-        DragoonRatingModifiers defaultDragoonRatingModifiers = GetDefaultDragoonRatings() as DragoonRatingModifiers;
+        DragoonRatingModifiers defaultDragoonRatingModifiers = (DragoonRatingModifiers)GetDefaultDragoonRatings();
 
         // Retrieve data from JSON file or generate it if the file doesn't exist
         DragoonRatingModifiers dragoonRatingModifiers = dataService.GetDataFromDataSource(defaultDragoonRatingModifiers);

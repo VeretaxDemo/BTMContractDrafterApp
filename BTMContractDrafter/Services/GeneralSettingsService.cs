@@ -8,9 +8,9 @@ namespace BTMContractDrafter.WPF.Services;
 
 // note we moved this to System.Text.Json, but this whole class may need moved to the Library.
 // And we should look for all places Newtonsoft is used and replace them
-public class GeneralSettingsService<T>
+public class GeneralSettingsService<T> where T : class
 {
-    private string _settingsFilePath;
+    private readonly string _settingsFilePath;
 
     public GeneralSettingsService(string settingsFilePath)
     {
@@ -48,7 +48,7 @@ public class GeneralSettingsService<T>
     //    return data;
     //}
 
-    public T GetDataFromDataSource<T>(T defaultData)
+    public T GetDataFromDataSource(T defaultData)
     {
         if (!File.Exists(_settingsFilePath))
         {
@@ -57,7 +57,7 @@ public class GeneralSettingsService<T>
             try
             {
                 // Serialize the default data to JSON
-                string jsonDefaultContent = defaultData.SerializeToJson();
+                string jsonDefaultContent = JsonSerializer.Serialize(defaultData, new JsonSerializerOptions { WriteIndented = true });
 
                 // Create the settings file and write the JSON content to it
                 File.WriteAllText(_settingsFilePath, jsonDefaultContent);
@@ -75,7 +75,14 @@ public class GeneralSettingsService<T>
         string jsonContent = File.ReadAllText(_settingsFilePath);
 
         // Deserialize JSON to an object of type T
-        T data = JsonSerializer.Deserialize<T>(jsonContent);
+        T? data = JsonSerializer.Deserialize<T>(jsonContent);
+
+        if (data is null)
+        {
+            ShowMessageBox("Failed to deserialize settings file. Falling back to default settings.");
+            return defaultData;
+        }
+
 
         return data;
     }
@@ -99,7 +106,7 @@ public class GeneralSettingsService<T>
         return data.SerializeToJson();
     }
 
-    private T DeserializeFromJson<T>(string jsonContent)
+    private T? DeserializeFromJson(string jsonContent)
     {
         return JsonSerializer.Deserialize<T>(jsonContent);
     }

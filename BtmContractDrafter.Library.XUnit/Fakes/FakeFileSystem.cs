@@ -16,9 +16,9 @@ public class FakeFileSystem : IFileSystem
         return Files.ContainsKey(path);
     }
 
-    public FakeFile GetFile(string path)
+    public FakeFile? GetFile(string path)
     {
-        if (Files.TryGetValue(path, out string contents))
+        if (Files.TryGetValue(path, out string? contents))
         {
             return new FakeFile(path, contents);
         }
